@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/TimetablePage.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:provider/provider.dart';
 
 import 'package:penproject/src/Database/UserDatabase.dart';
