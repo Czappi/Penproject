@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:penproject/src/Utils/Converters.dart';
 
 List<BarChartGroupData> barGroups(List<Map<String, dynamic>> data) {
   List<int> ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -17,8 +18,8 @@ List<BarChartGroupData> barGroups(List<Map<String, dynamic>> data) {
       missCount = data[i]['misscount'] ?? 0;
       delayCount = data[i]['delaycount'] ?? 0;
       count = data[i]['count'] ?? 0;
-      x = getMonth(date.month);
-      ints.remove(getMonth(date.month));
+      x = convertMonth(date.month);
+      ints.remove(convertMonth(date.month));
     }
     print(i);
 
@@ -27,43 +28,6 @@ List<BarChartGroupData> barGroups(List<Map<String, dynamic>> data) {
   });
   list.sort((a, b) => a.x.compareTo(b.x));
   return list;
-}
-
-int getMonth(int i) {
-  switch (i) {
-    case 9:
-      return 0;
-      break;
-    case 10:
-      return 1;
-      break;
-    case 11:
-      return 2;
-      break;
-    case 12:
-      return 3;
-      break;
-    case 1:
-      return 4;
-      break;
-    case 2:
-      return 5;
-      break;
-    case 3:
-      return 6;
-      break;
-    case 4:
-      return 7;
-      break;
-    case 5:
-      return 8;
-      break;
-    case 6:
-      return 9;
-      break;
-    default:
-      return 0;
-  }
 }
 
 BarChartGroupData makeGroupData(

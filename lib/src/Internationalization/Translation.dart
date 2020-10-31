@@ -60,6 +60,7 @@ class Translation extends Translations {
           'nodata': 'No data',
           'todaylessons': "Today's lessons",
           'nomorelessons': 'No more lessons',
+          'subject': 'Subject',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -118,6 +119,7 @@ class Translation extends Translations {
           'nodata': 'Nincs bejegyzett adat',
           'todaylessons': 'Mai órák',
           'nomorelessons': 'Nincs több órád!',
+          'subject': 'Tantárgy',
         }
       };
 }

@@ -158,7 +158,8 @@ extension ParseExt on DatabaseProvider {
           writeDate:
               m['writeDate'] != '' ? DateTime.parse(m['writeDate']) : null,
           seenDate: m['seenDate'] != '' ? DateTime.parse(m['seenDate']) : null,
-          form: m['form'])
+          form: m['form'],
+          subject: Subject(id: m['subjectId']))
       : null;
 
   Note getNoteData(Map m) => (m != null)
