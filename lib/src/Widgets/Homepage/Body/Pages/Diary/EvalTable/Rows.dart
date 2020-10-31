@@ -5,6 +5,7 @@ import 'package:penproject/src/Models/Evaluation.dart';
 import 'package:penproject/src/Utils/Converters.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/EvalTile.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/SubjectTile.dart';
+import 'package:penproject/src/Utils/format.dart';
 
 Future<List<DataRow>> evalTableRows(DatabaseProvider db,
     {@required List<Evaluation> evals, @required bool printSubject}) async {
@@ -22,13 +23,12 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
         .toList();
 
     if (printSubject) {
-      var subject = group.first.subject.id
-          .toString(); //await db.getSubjectbyId(group.first.subject.id);
+      var subject = await db.getSubjectbyId(group.first.subject.id);
 
       if (subject != null) {
         cells.add(DataCell(SubjectTile(
-          value: subject, //.name,
-          id: subject, //.id,
+          value: capitalize(subject.name),
+          id: subject.id,
         )));
       } else {
         cells.add(DataCell(SubjectTile(
@@ -41,7 +41,7 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
     print('start: for loop (${_evals.length})');
     for (var i = 1; i <= 10; i++) {
       var items = group
-          .where((element) => convertMonth(element.date.month) == i)
+          .where((element) => convertMonth(element.writeDate.month) == i)
           .toList();
       if (items.isNotEmpty) {
         List<EvalTile> tiles = [];

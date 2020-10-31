@@ -24,6 +24,7 @@ class EvalTable extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           controller: ScrollController(),
           child: DataTable(
+            //showBottomBorder: true,
             columns: evalTableColumns(printSubject),
             rows: dataRows,
           ),

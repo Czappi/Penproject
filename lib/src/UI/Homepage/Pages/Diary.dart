@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/SubjectTile.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable.dart';
 
 class HomepageDiary extends StatefulWidget {
   HomepageDiary({Key key}) : super(key: key);
@@ -42,6 +43,8 @@ class _HomepageDiaryState extends State<HomepageDiary> {
                   return HomepageDiaryBody(
                     allAverages: state.data['averages'],
                     subjects: state.data['subjectAverages'],
+                    rows: state.data['evaltablerows'],
+                    table: true,
                   );
                 } else {
                   Get.context.bloc<DiaryBloc>().add(Load());
@@ -59,23 +62,12 @@ class _HomepageDiaryState extends State<HomepageDiary> {
   }
 }
 
-class HomepageDiaryBody extends StatefulWidget {
+class HomepageDiaryBody extends StatelessWidget {
   final Map<int, dynamic> allAverages;
   final List<Map<String, dynamic>> subjects;
-  final RefreshController refreshController;
-  final VoidCallback onRefresh;
-  HomepageDiaryBody(
-      {this.allAverages,
-      this.subjects,
-      this.refreshController,
-      this.onRefresh});
-
-  @override
-  _HomepageDiaryBodyState createState() => _HomepageDiaryBodyState();
-}
-
-class _HomepageDiaryBodyState extends State<HomepageDiaryBody> {
-  ScrollController scrollController = ScrollController();
+  final List<DataRow> rows;
+  final bool table;
+  HomepageDiaryBody({this.allAverages, this.subjects, this.rows, this.table});
 
   @override
   Widget build(BuildContext context) {
@@ -84,20 +76,29 @@ class _HomepageDiaryBodyState extends State<HomepageDiaryBody> {
       slivers: [
         SliverToBoxAdapter(
           child: DiaryAllAverage(
-            averages: widget.allAverages,
+            averages: allAverages,
           ),
         ),
-        SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 2 / 1.2),
-            delegate: SliverChildBuilderDelegate((context, index) {
-              print(widget.subjects[index]['id']);
-              return DiarySubjectTile(
-                name: widget.subjects[index]['subjectname'],
-                average: widget.subjects[index]['average'],
-                id: widget.subjects[index]['id'],
-              );
-            }, childCount: widget.subjects.length))
+        (table)
+            ? SliverToBoxAdapter(
+                child: Column(
+                children: [
+                  EvalTable(printSubject: true, dataRows: rows),
+                  SizedBox(
+                    height: 30,
+                  )
+                ],
+              ))
+            : SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, childAspectRatio: 2 / 1.2),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return DiarySubjectTile(
+                    name: subjects[index]['subjectname'],
+                    average: subjects[index]['average'],
+                    id: subjects[index]['id'],
+                  );
+                }, childCount: subjects.length))
       ],
     );
   }
