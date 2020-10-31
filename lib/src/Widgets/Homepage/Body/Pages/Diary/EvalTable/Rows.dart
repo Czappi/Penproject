@@ -9,22 +9,26 @@ import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/Subje
 Future<List<DataRow>> evalTableRows(DatabaseProvider db,
     {@required List<Evaluation> evals, @required bool printSubject}) async {
   List<DataRow> rows = [];
+  List<Evaluation> _evals = [];
+
+  _evals.addAll(evals);
 
   // group by subject
-  while (evals.isNotEmpty) {
+  while (_evals.isNotEmpty) {
     List<DataCell> cells = [];
 
-    var group = evals
-        .where((element) => element.subject.id == evals.first.subject.id)
+    var group = _evals
+        .where((element) => element.subject.id == _evals.first.subject.id)
         .toList();
 
     if (printSubject) {
-      var subject = await db.getSubjectbyId(group.first.subject.id);
+      var subject = group.first.subject.id
+          .toString(); //await db.getSubjectbyId(group.first.subject.id);
 
       if (subject != null) {
         cells.add(DataCell(SubjectTile(
-          value: subject.name,
-          id: subject.id,
+          value: subject, //.name,
+          id: subject, //.id,
         )));
       } else {
         cells.add(DataCell(SubjectTile(
@@ -34,6 +38,7 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
       }
     }
 
+    print('start: for loop (${_evals.length})');
     for (var i = 1; i <= 10; i++) {
       var items = group
           .where((element) => convertMonth(element.date.month) == i)
@@ -55,8 +60,7 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
       }
     }
 
-    evals.toSet().removeAll(group.toSet());
-    evals.toList();
+    _evals.removeWhere((element) => group.any((e) => e.id == element.id));
     rows.add(DataRow(cells: cells));
   }
 

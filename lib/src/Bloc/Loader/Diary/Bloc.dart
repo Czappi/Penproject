@@ -32,14 +32,13 @@ class DiaryBloc extends Bloc<LoaderEvent, LoaderState> {
         var subjectaverages = await db.readSubjectAverages();
 
         if (evals != null) {
-          var _evalTableRows =
-              await evalTableRows(db, evals: evals, printSubject: true);
+          //var _evalTableRows = await evalTableRows(db, evals: evals, printSubject: true);
           var _averages = getAverages(evals);
 
           yield Loaded({
             'averages': _averages,
             'subjectAverages': subjectaverages,
-            'evaltablerows': _evalTableRows
+            //'evaltablerows': _evalTableRows
           });
         } else {
           yield Loaded(await refreshDiary());

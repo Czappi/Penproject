@@ -62,6 +62,7 @@ dependencies:
   flutter_screenutil: ^3.1.1
   flutter_local_notifications: ^1.4.4+4
   quick_actions: ^0.4.0+9
+  shared_preferences: ^0.5.12+2
 
 
   

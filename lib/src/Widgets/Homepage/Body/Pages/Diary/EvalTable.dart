@@ -13,18 +13,22 @@ class EvalTable extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8.sp),
       child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(18.sp),
-            ),
-            color: Get.theme.cardColor, //Color(0xff232d37)
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(18.sp),
           ),
-          child: SingleChildScrollView(
-            child: DataTable(
-              columns: evalTableColumns(printSubject),
-              rows: dataRows,
-            ),
-          )),
+          color: Get.theme.cardColor, //Color(0xff232d37)
+        ),
+        child: SizedBox(
+            child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: ScrollController(),
+          child: DataTable(
+            columns: evalTableColumns(printSubject),
+            rows: dataRows,
+          ),
+        )),
+      ),
     );
   }
 }

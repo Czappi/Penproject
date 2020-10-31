@@ -41,4 +41,5 @@ List<DataColumn> evalTableColumns(bool printSubject) {
       label: Text('JUNE'.tr),
     ),
   ]);
+  return columns;
 }
