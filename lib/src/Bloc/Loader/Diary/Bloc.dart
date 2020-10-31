@@ -5,6 +5,7 @@ import 'package:penproject/src/Bloc/Student.dart';
 import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:penproject/src/Utils/AverageMath.dart';
+import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/Rows.dart';
 import 'package:provider/provider.dart';
 
 import 'package:penproject/src/Database/UserDatabase.dart';
@@ -31,10 +32,15 @@ class DiaryBloc extends Bloc<LoaderEvent, LoaderState> {
         var subjectaverages = await db.readSubjectAverages();
 
         if (evals != null) {
+          var _evalTableRows =
+              await evalTableRows(db, evals: evals, printSubject: true);
           var _averages = getAverages(evals);
 
-          yield Loaded(
-              {'averages': _averages, 'subjectAverages': subjectaverages});
+          yield Loaded({
+            'averages': _averages,
+            'subjectAverages': subjectaverages,
+            'evaltablerows': _evalTableRows
+          });
         } else {
           yield Loaded(await refreshDiary());
         }

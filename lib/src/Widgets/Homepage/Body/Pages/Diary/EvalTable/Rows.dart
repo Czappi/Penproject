@@ -7,7 +7,7 @@ import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/EvalT
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/SubjectTile.dart';
 
 Future<List<DataRow>> evalTableRows(DatabaseProvider db,
-    {List<Evaluation> evals, bool printSubject}) async {
+    {@required List<Evaluation> evals, @required bool printSubject}) async {
   List<DataRow> rows = [];
 
   // group by subject

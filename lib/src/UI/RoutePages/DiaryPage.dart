@@ -8,6 +8,7 @@ import 'package:penproject/src/Models/Evaluation.dart';
 import 'package:penproject/src/Utils/format.dart';
 import 'package:penproject/src/Widgets/ErrorWidget.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/AveragesChart.dart';
+import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable.dart';
 import 'package:penproject/src/Widgets/RoutePages/Foundation.dart';
 import 'package:penproject/src/Widgets/RoutePages/Title.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -54,6 +55,7 @@ class _DiaryPageState extends State<DiaryPage> {
                       averages: state.data['averages'],
                       evals: state.data['evals'],
                       title: state.data['title'],
+                      rows: state.data['evaltablerows'],
                     );
                   } else {
                     Get.context.bloc<DiaryPageBloc>().add(Load(id));
@@ -77,8 +79,9 @@ class _DiaryPageState extends State<DiaryPage> {
 class DiaryPageBody extends StatelessWidget {
   final List<Evaluation> evals;
   final Map<int, double> averages;
+  final List<DataRow> rows;
   final String title;
-  const DiaryPageBody({this.evals, this.averages, this.title});
+  const DiaryPageBody({this.evals, this.averages, this.title, this.rows});
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +98,10 @@ class DiaryPageBody extends StatelessWidget {
               AveragesChart(
                 averages: averages,
               ),
+              SizedBox(
+                height: 20.h,
+              ),
+              EvalTable(printSubject: false, dataRows: rows),
               SizedBox(
                 height: 20.h,
               ),

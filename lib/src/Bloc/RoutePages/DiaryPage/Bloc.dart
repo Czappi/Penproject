@@ -4,6 +4,7 @@ import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/DiaryPage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:penproject/src/Utils/AverageMath.dart';
+import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/Rows.dart';
 import 'package:provider/provider.dart';
 
 import 'package:penproject/src/Database/UserDatabase.dart';
@@ -32,10 +33,16 @@ class DiaryPageBloc extends Bloc<RoutePageEvent, RoutePageState> {
           var subject = await db.getSubjectbyId(event.id);
 
           if (evals != null && subject != null) {
+            var _evalTableRows =
+                await evalTableRows(db, evals: evals, printSubject: false);
             var averages = getAverages(evals);
 
-            yield Loaded(
-                {'averages': averages, 'evals': evals, 'title': subject.name});
+            yield Loaded({
+              'averages': averages,
+              'evals': evals,
+              'title': subject.name,
+              'evaltablerows': _evalTableRows
+            });
           } else {
             yield Loaded(await refreshDiaryPage());
           }
