@@ -31,7 +31,7 @@ class StudentBloc extends Bloc<LoaderEvent, LoaderState> {
           yield Loaded(await refreshStudent());
         }
       } catch (e) {
-        print("LoaderBloc.LoadStudent ERROR: $e");
+        print("LoaderBloc.StudentBloc ERROR: $e");
         yield LoadError();
       }
     }

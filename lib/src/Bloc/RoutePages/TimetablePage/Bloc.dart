@@ -22,7 +22,7 @@ class TimetablePageBloc extends Bloc<RoutePageEvent, RoutePageState> {
       try {
         yield Loading();
       } catch (e) {
-        print("RoutePageBloc.{$event} ERROR: $e");
+        print("RoutePageBloc.TimetablePage ERROR: $e");
         yield LoadError();
       }
     }

@@ -36,7 +36,7 @@ class AbsencesBloc extends Bloc<LoaderEvent, LoaderState> {
           yield Loaded(await refreshAbsences());
         }
       } catch (e) {
-        print("LoaderBloc.{$event} ERROR: $e");
+        print("LoaderBloc.AbsencesBloc ERROR: $e");
         yield LoadError();
       }
     }
@@ -48,7 +48,7 @@ class AbsencesBloc extends Bloc<LoaderEvent, LoaderState> {
 
     if (connectivityResult != ConnectivityResult.none) {
       var res = await client.getAbsences();
-      print("length: ${res.length}");
+      //print("length: ${res.length}");
       await db.writeAbsences(res);
     }
     return {'reloaded': true};

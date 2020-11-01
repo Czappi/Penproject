@@ -49,7 +49,7 @@ class HomeBloc extends Bloc<LoaderEvent, LoaderState> {
           yield Loaded(await refreshHome());
         }
       } catch (e) {
-        print("LoaderBloc.{$event} ERROR: $e");
+        print("LoaderBloc.HomeBloc ERROR: $e");
         yield LoadError();
       }
     }

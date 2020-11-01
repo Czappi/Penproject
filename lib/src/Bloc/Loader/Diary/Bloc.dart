@@ -58,7 +58,7 @@ class DiaryBloc extends Bloc<LoaderEvent, LoaderState> {
           yield Loaded(await refreshDiary());
         }
       } catch (e) {
-        print("LoaderBloc.{$event} ERROR: $e");
+        print("LoaderBloc.DiaryBloc ERROR: $e");
         yield LoadError();
       }
     }

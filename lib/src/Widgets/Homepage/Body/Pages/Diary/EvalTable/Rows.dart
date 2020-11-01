@@ -42,7 +42,7 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
       }
     }
 
-    print('start: for loop (${_evals.length})');
+    //print('start: for loop (${_evals.length})');
     for (var i = 1; i <= 10; i++) {
       var items = group
           .where((element) => convertMonth(element.writeDate.month) == i)

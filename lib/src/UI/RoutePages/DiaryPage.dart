@@ -86,7 +86,7 @@ class DiaryPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(rows);
+    //print(rows);
     return Column(
       children: [
         RoutePageTitle(title: capitalize(title) ?? ""),

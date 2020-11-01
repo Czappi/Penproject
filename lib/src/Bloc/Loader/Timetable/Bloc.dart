@@ -35,7 +35,7 @@ class TimetableBloc extends Bloc<LoaderEvent, LoaderState> {
           yield Loaded(await refreshTimetable());
         }
       } catch (e) {
-        print("LoaderBloc (Timetable) ERROR: $e");
+        print("LoaderBloc.TimetableBloc ERROR: $e");
         yield LoadError();
       }
     }
@@ -99,7 +99,7 @@ class TimetableBloc extends Bloc<LoaderEvent, LoaderState> {
 
     lessons.forEach((lesson) {
       var lessonstart = lesson.start ?? lesson.date;
-      print(lesson.date.toString());
+      //print(lesson.date.toString());
 
       if (!days.any((d) => d.lessons.any((l) {
             var lstart = l.start != null ? l.start : l.date;
