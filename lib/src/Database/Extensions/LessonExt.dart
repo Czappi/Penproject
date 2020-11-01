@@ -85,9 +85,8 @@ extension LessonExt on DatabaseProvider {
     try {
       var db = await database;
 
-      var result = await db.delete("Lessons",
-          where: "date(start) <= date('now','-14 day')");
-      print(result);
+      await db.delete("Lessons", where: "date(start) <= date('now','-14 day')");
+      //print(result);
     } catch (e) {
       print("DatabaseProvider (deleteOldLessons) ERROR : $e");
     }

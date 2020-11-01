@@ -21,7 +21,6 @@ List<BarChartGroupData> barGroups(List<Map<String, dynamic>> data) {
       x = convertMonth(date.month);
       ints.remove(convertMonth(date.month));
     }
-    print(i);
 
     return makeGroupData(x, absenceCount.toDouble(), missCount.toDouble(),
         delayCount.toDouble(), count.toDouble());

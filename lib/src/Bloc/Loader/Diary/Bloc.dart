@@ -30,7 +30,6 @@ class DiaryBloc extends Bloc<LoaderEvent, LoaderState> {
         DatabaseProvider db = DatabaseProvider(client.clientId);
 
         // Settings
-        print(Get.context.read<SettingsProvider>().diary);
         var isTable = Get.context.read<SettingsProvider>().isTable();
 
         // evaluations

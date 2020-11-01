@@ -49,7 +49,7 @@ class TimetableBloc extends Bloc<LoaderEvent, LoaderState> {
     var weekdates = timetableBuilder.getWeek(timetableBuilder.getCurrentWeek());
 
     if (connectivityResult != ConnectivityResult.none) {
-      //await db.deleteLessons();
+      await db.deleteOldLessons();
       var lessons = await client.getLessons(
           weekdates['currentstart'], weekdates['currentend']);
       lessons.addAll(await client.getLessons(

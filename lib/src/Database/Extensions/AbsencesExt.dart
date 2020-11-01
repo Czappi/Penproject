@@ -11,7 +11,6 @@ extension AbsencesExt on DatabaseProvider {
     var batch = db.batch();
     try {
       l.forEach((e) {
-        print(e.id);
         var values = getAbsenceValues(e);
         batch.insert("Absences", values,
             conflictAlgorithm: ConflictAlgorithm.replace);
@@ -84,7 +83,6 @@ extension AbsencesExt on DatabaseProvider {
           });
         });
       }
-      print(all);
       return all;
     } catch (e) {
       print("DatabaseProvider (readAbsencesforTiles) ERROR : $e");

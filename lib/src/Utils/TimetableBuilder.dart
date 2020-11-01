@@ -93,7 +93,7 @@ class TimetableBuilder {
 
   int today(int weeklength) {
     var today = DateTime.now().weekday;
-    print('$today - $weeklength');
+    //print('$today - $weeklength');
 
     if (today > weeklength) {
       today = weeklength;
