@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' show DataRow;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/Api/client.dart';
@@ -5,6 +6,7 @@ import 'package:penproject/src/Bloc/Student.dart';
 import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:penproject/src/Utils/AverageMath.dart';
+import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/Rows.dart';
 import 'package:provider/provider.dart';
 
@@ -27,24 +29,28 @@ class DiaryBloc extends Bloc<LoaderEvent, LoaderState> {
         yield Loading();
         DatabaseProvider db = DatabaseProvider(client.clientId);
 
-        // dev shit
-        var table = true;
+        // Settings
+        print(Get.context.read<SettingsProvider>().diary);
+        var isTable = Get.context.read<SettingsProvider>().isTable();
 
+        // evaluations
         var evals = await db.readEvaluations();
 
-        var subjectaverages = await db.readSubjectAverages();
-
         if (evals != null) {
-          var _evalTableRows = [];
-          if (table) {
+          List<DataRow> _evalTableRows = <DataRow>[];
+          List<Map<String, dynamic>> subjectaverages = <Map<String, dynamic>>[];
+          if (isTable) {
             _evalTableRows =
                 await evalTableRows(db, evals: evals, printSubject: true);
+          } else {
+            subjectaverages = await db.readSubjectAverages();
           }
 
           var _averages = getAverages(evals);
 
           yield Loaded({
             'averages': _averages,
+            'isTable': isTable,
             'subjectAverages': subjectaverages,
             'evaltablerows': _evalTableRows
           });

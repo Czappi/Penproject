@@ -64,6 +64,7 @@ class Translation extends Translations {
           'subject': 'Subject',
           'User Interface': 'User Interface',
           'darkmode': 'Dark mode',
+          'diarytable': 'Diary table',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -126,6 +127,7 @@ class Translation extends Translations {
           'subject': 'Tantárgy',
           'User Interface': 'Felhasználói felület',
           'darkmode': 'Sötét mód',
+          'diarytable': 'Napló táblázat',
         }
       };
 }

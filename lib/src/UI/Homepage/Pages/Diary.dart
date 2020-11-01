@@ -44,7 +44,7 @@ class _HomepageDiaryState extends State<HomepageDiary> {
                     allAverages: state.data['averages'],
                     subjects: state.data['subjectAverages'],
                     rows: state.data['evaltablerows'],
-                    table: true,
+                    isTable: state.data['isTable'],
                   );
                 } else {
                   Get.context.bloc<DiaryBloc>().add(Load());
@@ -66,8 +66,8 @@ class HomepageDiaryBody extends StatelessWidget {
   final Map<int, dynamic> allAverages;
   final List<Map<String, dynamic>> subjects;
   final List<DataRow> rows;
-  final bool table;
-  HomepageDiaryBody({this.allAverages, this.subjects, this.rows, this.table});
+  final bool isTable;
+  HomepageDiaryBody({this.allAverages, this.subjects, this.rows, this.isTable});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class HomepageDiaryBody extends StatelessWidget {
             averages: allAverages,
           ),
         ),
-        (table)
+        (isTable)
             ? SliverToBoxAdapter(
                 child: Column(
                 children: [

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
+import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -56,6 +57,9 @@ class Main extends StatelessWidget {
               Provider(
                 create: (context) => ApiClient(),
               ),
+              Provider(
+                create: (context) => SettingsProvider(),
+              )
               //Provider(create: (context) => UserProvider()),
             ],
             child: ThemeProvider(
@@ -81,6 +85,9 @@ class Main extends StatelessWidget {
                                     .buttonColor,
                               ),
                           child: GetMaterialApp(
+                            onInit: () {
+                              context.read<SettingsProvider>().initProvider();
+                            },
                             debugShowCheckedModeBanner: false,
                             title: "Pen",
                             theme: ThemeProvider.themeOf(context).data,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-import 'package:penproject/main.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:theme_provider/theme_provider.dart';
 
