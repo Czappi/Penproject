@@ -63,6 +63,7 @@ class Translation extends Translations {
           'nomorelessons': 'No more lessons',
           'subject': 'Subject',
           'User Interface': 'User Interface',
+          'darkmode': 'Dark mode',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -123,7 +124,8 @@ class Translation extends Translations {
           'todaylessons': 'Mai órák',
           'nomorelessons': 'Nincs több órád!',
           'subject': 'Tantárgy',
-          'User Interface': 'Felhasználói felület'
+          'User Interface': 'Felhasználói felület',
+          'darkmode': 'Sötét mód',
         }
       };
 }

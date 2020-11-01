@@ -12,7 +12,9 @@ class DiaryAllAverage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(8, 8, 8, 18),
       decoration: BoxDecoration(
-          color: Colors.lightBlueAccent,
+          color: Get.isDarkMode
+              ? Colors.lightBlueAccent[700]
+              : Colors.lightBlueAccent,
           borderRadius: BorderRadius.circular(18.sp)),
       child: Column(
         children: [

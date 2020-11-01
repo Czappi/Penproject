@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
+import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 
@@ -23,13 +24,16 @@ import 'package:penproject/src/Bloc/Auth.dart';
 import 'package:penproject/src/Bloc/Student.dart';
 import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:penproject/src/Bloc/TimetablePage.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.blue, // navigation bar color
     statusBarColor: Colors.transparent, // status bar color
   ));
-  runApp(Main());
+  runApp(RestartWidget(
+    child: Main(),
+  ));
 }
 
 class Main extends StatelessWidget {
@@ -54,29 +58,50 @@ class Main extends StatelessWidget {
               ),
               //Provider(create: (context) => UserProvider()),
             ],
-            child: RefreshConfiguration(
-                headerBuilder: () => MaterialClassicHeader(
-                      color: Get.theme.buttonColor,
-                    ),
-                child: GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: "Pen",
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  themeMode: ThemeMode.light, //ThemeMode.system,
-                  defaultTransition: Transition.downToUp,
-                  //initialRoute: "/",
-                  getPages: [
-                    //GetPage(name: "/", page: null),
-                    //GetPage(name: "/homepage", page: null),
-                    //GetPage(name: "/login", page: null),
-                    //GetPage(name: "/lesson", page: null),
-                    GetPage(name: "/DiaryPage/:id", page: () => DiaryPage())
-                  ],
-                  translations: Translation(), // your translations
-                  locale: Locale('hu', 'HU'),
-                  fallbackLocale: Locale('en', 'US'),
-                  home: AuthScreen(),
+            child: ThemeProvider(
+                saveThemesOnChange: true,
+                loadThemeOnInit: true,
+                defaultThemeId: "lighttheme",
+                themes: [
+                  AppTheme(
+                      id: "lighttheme",
+                      description: "Light mode",
+                      data: lightTheme),
+                  AppTheme(
+                      id: "darktheme",
+                      description: "Dark mode",
+                      data: darkTheme)
+                ],
+                child: ThemeConsumer(
+                  child: Builder(
+                      builder: (context) => RefreshConfiguration(
+                          headerBuilder: () => MaterialClassicHeader(
+                                color: ThemeProvider.themeOf(context)
+                                    .data
+                                    .buttonColor,
+                              ),
+                          child: GetMaterialApp(
+                            debugShowCheckedModeBanner: false,
+                            title: "Pen",
+                            theme: ThemeProvider.themeOf(context).data,
+                            darkTheme: ThemeProvider.themeOf(context).data,
+                            themeMode: ThemeMode.light, //ThemeMode.system,
+                            defaultTransition: Transition.downToUp,
+                            //initialRoute: "/",
+                            getPages: [
+                              //GetPage(name: "/", page: null),
+                              //GetPage(name: "/homepage", page: null),
+                              //GetPage(name: "/login", page: null),
+                              //GetPage(name: "/lesson", page: null),
+                              GetPage(
+                                  name: "/DiaryPage/:id",
+                                  page: () => DiaryPage())
+                            ],
+                            translations: Translation(), // your translations
+                            locale: Locale('hu', 'HU'),
+                            fallbackLocale: Locale('en', 'US'),
+                            home: AuthScreen(),
+                          ))),
                 ))));
   }
 }

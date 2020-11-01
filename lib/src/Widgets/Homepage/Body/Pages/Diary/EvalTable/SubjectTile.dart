@@ -10,7 +10,9 @@ class SubjectTile extends StatelessWidget {
     return Text(
       value,
       style: Get.textTheme.bodyText2.apply(
-          fontWeightDelta: 2, fontSizeFactor: 1.1, color: Colors.black87),
+          fontWeightDelta: 2,
+          fontSizeFactor: 1.1,
+          color: Get.isDarkMode ? Colors.white : Colors.black87),
     );
   }
 }

@@ -19,8 +19,9 @@ class HomeLessonsTitle extends StatelessWidget {
             TextSpan(text: 'todaylessons'.tr, style: Get.textTheme.headline6),
             TextSpan(
                 text: " ($_count)",
-                style: Get.textTheme.headline6
-                    .apply(color: Colors.black54, fontSizeFactor: 0.8))
+                style: Get.textTheme.headline6.apply(
+                    color: Get.isDarkMode ? Colors.white54 : Colors.black54,
+                    fontSizeFactor: 0.8))
           ]))
         ],
       ),

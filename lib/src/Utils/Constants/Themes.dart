@@ -14,7 +14,7 @@ ThemeData get darkTheme => ThemeData(
         headline6: GoogleFonts.roboto(
             color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
         headline5: GoogleFonts.roboto(
-            color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16),
+            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16),
         subtitle2: GoogleFonts.roboto(
             color: Colors.blueGrey[300],
             fontWeight: FontWeight.bold,
