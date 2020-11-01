@@ -12,7 +12,8 @@ class _AuthScreenSplashState extends State<AuthScreenSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: SingleChildScrollView(
+      child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -31,6 +32,6 @@ class _AuthScreenSplashState extends State<AuthScreenSplash> {
               height: 80.h,
             )
           ]),
-    );
+    ));
   }
 }
