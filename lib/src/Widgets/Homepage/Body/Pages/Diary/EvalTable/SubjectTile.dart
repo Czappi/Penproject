@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SubjectTile extends StatelessWidget {
-  final String value, id;
-  const SubjectTile({@required this.value, this.id});
+  final String value;
+  const SubjectTile({@required this.value});
 
   @override
   Widget build(BuildContext context) {

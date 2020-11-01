@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:penproject/src/Database/Database.dart';
 import 'package:penproject/src/Database/Extensions.dart';
 import 'package:penproject/src/Models/Evaluation.dart';
@@ -26,14 +27,17 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
       var subject = await db.getSubjectbyId(group.first.subject.id);
 
       if (subject != null) {
-        cells.add(DataCell(SubjectTile(
-          value: capitalize(subject.name),
-          id: subject.id,
-        )));
+        cells.add(DataCell(
+            SubjectTile(
+              value: capitalize(subject.name),
+            ), onTap: () {
+          if (subject.id != null) {
+            Get.toNamed("/DiaryPage/${subject.id}");
+          }
+        }));
       } else {
         cells.add(DataCell(SubjectTile(
           value: "null",
-          id: null,
         )));
       }
     }
