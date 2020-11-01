@@ -49,15 +49,33 @@ BarChartData barChartData(List<BarChartGroupData> barGroups) {
                     "\n" +
                     "absence".tr +
                     ": " +
-                    (group.barRods[0].y).toInt().toString() +
+                    (group.barRods
+                                .firstWhere((element) =>
+                                    element.color == Color(0xff2bdb90))
+                                .y ??
+                            0)
+                        .toInt()
+                        .toString() +
                     "\n" +
                     "miss".tr +
                     ": " +
-                    (group.barRods[1].y).toInt().toString() +
+                    (group.barRods
+                                .firstWhere((element) =>
+                                    element.color == Color(0xffffdd80))
+                                .y ??
+                            0)
+                        .toInt()
+                        .toString() +
                     "\n" +
                     "delay".tr +
                     ": " +
-                    (group.barRods[2].y).toInt().toString(),
+                    (group.barRods
+                                .firstWhere((element) =>
+                                    element.color == Color(0xff19bfff))
+                                .y ??
+                            0)
+                        .toInt()
+                        .toString(),
                 TextStyle(color: Colors.yellow));
           }),
     ),

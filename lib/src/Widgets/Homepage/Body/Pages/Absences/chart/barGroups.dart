@@ -46,6 +46,7 @@ BarChartGroupData makeGroupData(
     barRods: [
       BarChartRodData(
         y: absenceCount.toDouble(),
+        color: Color(0xff2bdb90),
         width: barWidth,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(6), topRight: Radius.circular(6)),
@@ -55,6 +56,7 @@ BarChartGroupData makeGroupData(
       ),
       BarChartRodData(
         y: missCount.toDouble(),
+        color: Color(0xffffdd80),
         width: barWidth,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(6), topRight: Radius.circular(6)),
@@ -64,6 +66,7 @@ BarChartGroupData makeGroupData(
       ),
       BarChartRodData(
         y: delayCount.toDouble(),
+        color: Color(0xff19bfff),
         width: barWidth,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(6), topRight: Radius.circular(6)),
