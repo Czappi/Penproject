@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
-enum DateFormatType { basic, custom, date }
+enum DateFormatType { basic, custom, date, yyyymmdd }
 
 String capital(String s) => s != null
-    ? s.length > 0 ? s[0].toUpperCase() + s.substring(1).toLowerCase() : ""
+    ? s.length > 0
+        ? s[0].toUpperCase() + s.substring(1).toLowerCase()
+        : ""
     : null;
 
 String capitalize(String s) =>
@@ -40,6 +42,11 @@ String dateformat(DateFormatType type, {DateTime date, Duration duration}) {
     var month = _toTwoDigits(date.month);
     var day = _toTwoDigits(date.day);
     return "$month.$day";
+  } else if (type == DateFormatType.yyyymmdd) {
+    var year = date.year;
+    var month = _toTwoDigits(date.month);
+    var day = _toTwoDigits(date.day);
+    return "$year-$month-$day";
   } else {
     return '';
   }

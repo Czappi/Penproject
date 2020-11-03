@@ -18,6 +18,7 @@ import 'package:penproject/src/Models/School.dart';
 import 'package:penproject/src/Models/Student.dart';
 import 'package:penproject/src/Models/Subject.dart';
 import 'package:penproject/src/Models/User.dart';
+import 'package:penproject/src/Utils/format.dart';
 import 'package:penproject/src/Utils/generateUserId.dart';
 import 'package:penproject/src/Utils/parseJwt.dart';
 import 'package:penproject/src/Utils/Constants/Api.dart';
@@ -96,9 +97,9 @@ class ApiClient {
         BaseURL.kreta(instituteCode) +
             KretaEndpoints.timetable +
             "?datumTol=" +
-            from.toUtc().toIso8601String() +
+            dateformat(DateFormatType.yyyymmdd, date: from) +
             "&datumIg=" +
-            to.toUtc().toIso8601String(),
+            dateformat(DateFormatType.yyyymmdd, date: to),
         headers: {
           "Authorization": "Bearer $accessToken",
           "User-Agent": userAgent
