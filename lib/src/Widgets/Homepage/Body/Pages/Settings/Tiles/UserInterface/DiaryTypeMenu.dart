@@ -3,7 +3,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:theme_provider/theme_provider.dart';
 
 class SettingsUIDiaryTypeMenu extends StatefulWidget {
   SettingsUIDiaryTypeMenu({Key key}) : super(key: key);

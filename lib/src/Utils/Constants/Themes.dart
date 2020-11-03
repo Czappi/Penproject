@@ -6,6 +6,8 @@ ThemeData get darkTheme => ThemeData(
       backgroundColor: Color(0xFF000000),
       scaffoldBackgroundColor: Color(0xFF000000),
       bottomAppBarColor: Color(0xFF131313),
+      canvasColor: Colors.grey[900], // refresh indicator background color
+      accentColor: Color(0xFF6c5dd3), // refresh indicator color
       cardColor: Colors.grey[900],
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(elevation: 0, brightness: Brightness.dark),
@@ -27,25 +29,28 @@ ThemeData get darkTheme => ThemeData(
     );
 
 ThemeData get lightTheme => ThemeData(
-    primaryColor: Color(0xfff4f5f9),
-    backgroundColor: Color(0xFFf4f5f9),
-    scaffoldBackgroundColor: Color(0xFFf4f5f9),
-    cardColor: Colors.white,
-    brightness: Brightness.light,
-    appBarTheme: AppBarTheme(elevation: 0, brightness: Brightness.light),
-    bottomAppBarColor: Colors.white,
-    textTheme: TextTheme(
-      button: GoogleFonts.roboto(color: Colors.white),
-      headline6: GoogleFonts.roboto(
-          color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
-      headline5: GoogleFonts.roboto(
-          color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16),
-      subtitle2: GoogleFonts.roboto(
-          color: Colors.blueGrey[300],
-          fontWeight: FontWeight.bold,
-          fontSize: 12),
-      bodyText2: GoogleFonts.roboto(color: Colors.black54),
-    ),
-    buttonColor: Color(0xFF6c5dd3),
-    disabledColor: Colors.grey,
-    dividerColor: Colors.transparent);
+      primaryColor: Color(0xfff4f5f9),
+      backgroundColor: Color(0xFFf4f5f9),
+      scaffoldBackgroundColor: Color(0xFFf4f5f9),
+      canvasColor: Colors.white, // refresh indicator background color
+      accentColor: Color(0xFF6c5dd3), // refresh indicator color
+      cardColor: Colors.white,
+      brightness: Brightness.light,
+      appBarTheme: AppBarTheme(elevation: 0, brightness: Brightness.light),
+      bottomAppBarColor: Colors.white,
+      textTheme: TextTheme(
+        button: GoogleFonts.roboto(color: Colors.white),
+        headline6: GoogleFonts.roboto(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 20),
+        headline5: GoogleFonts.roboto(
+            color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 16),
+        subtitle2: GoogleFonts.roboto(
+            color: Colors.blueGrey[300],
+            fontWeight: FontWeight.bold,
+            fontSize: 12),
+        bodyText2: GoogleFonts.roboto(color: Colors.black54),
+      ),
+      buttonColor: Color(0xFF6c5dd3),
+      disabledColor: Colors.grey,
+      dividerColor: Colors.transparent,
+    );

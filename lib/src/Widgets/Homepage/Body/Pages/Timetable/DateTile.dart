@@ -67,7 +67,11 @@ class TimetableDateTile extends StatelessWidget {
                       Text(
                         date.day.toString(),
                         style: Get.textTheme.headline5.apply(
-                            color: selected ? Colors.white : Colors.black87,
+                            color: selected
+                                ? Colors.white
+                                : Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black87,
                             fontSizeFactor: 1.2),
                       ),
                     ],

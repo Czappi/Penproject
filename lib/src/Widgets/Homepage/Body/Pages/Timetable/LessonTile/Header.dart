@@ -25,7 +25,8 @@ class TimetableLessonTileHeader extends StatelessWidget {
         ),
         Text(
           dateformat(DateFormatType.basic, date: start.toLocal()),
-          style: Get.textTheme.headline6.apply(color: Colors.grey[800]),
+          style: Get.textTheme.headline6
+              .apply(color: Get.isDarkMode ? Colors.white70 : Colors.grey[800]),
         ),
         Expanded(
           child: Container(

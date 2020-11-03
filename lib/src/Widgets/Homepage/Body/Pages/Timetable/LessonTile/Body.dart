@@ -32,14 +32,20 @@ class TimetableLessonTileBody extends StatelessWidget {
             //width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15.sp)),
-                border: Border.all(color: Colors.grey[300])),
+                border: Border.all(
+                    color: Get.isDarkMode
+                        ? Colors.grey.shade800.withOpacity(0.8)
+                        : Colors.grey[300])),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   capitalize(title),
-                  style: Get.textTheme.headline6
-                      .apply(color: Color(0xff4C4C60), fontSizeFactor: 1.0),
+                  style: Get.textTheme.headline6.apply(
+                      color: Get.isDarkMode
+                          ? Colors.white.withOpacity(0.85)
+                          : Color(0xff4C4C60),
+                      fontSizeFactor: 1.0),
                 ),
                 type != LessonType.basic
                     ? type == LessonType.missed
@@ -57,7 +63,10 @@ class TimetableLessonTileBody extends StatelessWidget {
                         ? Text(
                             description.toString(),
                             style: Get.textTheme.bodyText2.apply(
-                                color: Color(0xff6D6D7C), fontSizeFactor: 0.85),
+                                color: Get.isDarkMode
+                                    ? Colors.white.withOpacity(0.75)
+                                    : Color(0xff6D6D7C),
+                                fontSizeFactor: 0.85),
                           )
                         : Container(),
                 SizedBox(
@@ -65,14 +74,20 @@ class TimetableLessonTileBody extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Feather.user, color: Color(0xff7C7C89)),
+                    Icon(Feather.user,
+                        color: Get.isDarkMode
+                            ? Colors.white.withOpacity(0.75)
+                            : Color(0xff7C7C89)),
                     SizedBox(
                       width: 10.w,
                     ),
                     Text(
                       teacher.toString(),
-                      style: Get.textTheme.headline5
-                          .apply(color: Color(0xff6D6D7C), fontSizeFactor: 1),
+                      style: Get.textTheme.headline5.apply(
+                          color: Get.isDarkMode
+                              ? Colors.white.withOpacity(0.75)
+                              : Color(0xff6D6D7C),
+                          fontSizeFactor: 1),
                     )
                   ],
                 ),
@@ -81,14 +96,20 @@ class TimetableLessonTileBody extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Feather.map_pin, color: Color(0xff7C7C89)),
+                    Icon(Feather.map_pin,
+                        color: Get.isDarkMode
+                            ? Colors.white.withOpacity(0.75)
+                            : Color(0xff7C7C89)),
                     SizedBox(
                       width: 10.w,
                     ),
                     Text(
                       room.toString(),
-                      style: Get.textTheme.headline5
-                          .apply(color: Color(0xff6D6D7C), fontSizeFactor: 1),
+                      style: Get.textTheme.headline5.apply(
+                          color: Get.isDarkMode
+                              ? Colors.white.withOpacity(0.75)
+                              : Color(0xff6D6D7C),
+                          fontSizeFactor: 1),
                     )
                   ],
                 ),
