@@ -71,6 +71,27 @@ extension LessonExt on DatabaseProvider {
     }
   }
 
+  Future<List<Lesson>> readTodayLessons() async {
+    try {
+      var db = await database;
+      var res = await db.query(
+        "Lessons",
+        where: "date(start) =date('now')",
+      );
+      List<Lesson> list = [];
+      if (res.isNotEmpty) {
+        res.forEach((element) async {
+          list.add(getLessonData(element));
+        });
+      }
+
+      return list;
+    } catch (e) {
+      print("DatabaseProvider (readLessons) ERROR : $e");
+      return null;
+    }
+  }
+
   Future<void> deleteLessons() async {
     try {
       var db = await database;

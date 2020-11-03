@@ -13,7 +13,7 @@ class HomeLessonTileTime extends StatelessWidget {
       padding: EdgeInsets.only(right: 10.sp),
       child: Center(
         child: Text(
-          dateformat(DateFormatType.basic),
+          dateformat(DateFormatType.basic, date: start),
           style: Get.textTheme.headline6,
         ),
       ),

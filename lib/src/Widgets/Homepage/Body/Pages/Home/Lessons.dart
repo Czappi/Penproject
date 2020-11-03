@@ -20,8 +20,6 @@ class HomeLessons extends StatelessWidget {
           lessons: lessons
               .where((element) => element.end.isAfter(DateTime.now()))
               .toList()
-              .reversed
-              .toList()
               .take(2)
               .toList(),
         ),

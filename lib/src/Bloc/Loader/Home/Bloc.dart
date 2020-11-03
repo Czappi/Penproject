@@ -23,13 +23,11 @@ class HomeBloc extends Bloc<LoaderEvent, LoaderState> {
       try {
         yield Loading();
         DatabaseProvider db = DatabaseProvider(client.clientId);
-        var midnight = DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day);
+
         Map<String, dynamic> load = {};
 
         var evals = await db.readEvaluations();
-        var todaylessons =
-            await db.readLessons(midnight, midnight.add(Duration(hours: 24)));
+        var todaylessons = await db.readTodayLessons();
         var absences = await db.readAbsences();
 
         if (evals != []) {
