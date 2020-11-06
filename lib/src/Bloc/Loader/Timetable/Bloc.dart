@@ -49,13 +49,16 @@ class TimetableBloc extends Bloc<LoaderEvent, LoaderState> {
     var weekdates = timetableBuilder.getWeek(timetableBuilder.getCurrentWeek());
 
     if (connectivityResult != ConnectivityResult.none) {
-      //await db.deleteOldLessons();
       var lessons = await client.getLessons(
           weekdates['currentstart'], weekdates['currentend']);
       lessons.addAll(await client.getLessons(
           weekdates['nextstart'], weekdates['nextend']));
 
       if (lessons.isNotEmpty) {
+        // before write new lessons delete all
+        await db.deleteLessons();
+
+        // write lessons & subjects
         await db.writeLessons(lessons);
         await db.writeSubjects(lessons.map((e) => e.subject).toList());
       }
@@ -70,8 +73,7 @@ class TimetableBloc extends Bloc<LoaderEvent, LoaderState> {
       TimetableBuilder timetableBuilder = TimetableBuilder();
       var weekdates =
           timetableBuilder.getWeek(timetableBuilder.getCurrentWeek());
-      //await db.deleteLessons();
-      await db.deleteOldLessons();
+
       var lessons = await db.readLessons(
           weekdates['currentstart'], weekdates['currentend']);
 
