@@ -6,6 +6,7 @@ import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
 import 'package:penproject/src/UI/RoutePages/EvaluationPage.dart';
+import 'package:penproject/src/UI/RoutePages/TimetablePage.dart';
 import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:provider/provider.dart';
@@ -88,7 +89,13 @@ class Main extends StatelessWidget {
                     //GetPage(name: "/lesson", page: null),
                     GetPage(name: "/DiaryPage/:id", page: () => DiaryPage()),
                     GetPage(
-                        name: "/EvalPage/:id", page: () => EvaluationPage()),
+                        name: "/EvalPage/:id",
+                        page: () => EvaluationPage(
+                              asPage: true,
+                            )),
+                    GetPage(
+                        name: "/TimetablePage/:id",
+                        page: () => TimetablePage()),
                   ],
                   translations: Translation(), // your translations
                   locale: Locale('hu', 'HU'),

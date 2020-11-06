@@ -28,6 +28,7 @@ class TimetableLessonTile extends StatelessWidget {
               ? lesson.teacher
               : lesson.substituteTeacher,
           type: type,
+          id: lesson.uid,
         )
       ],
     );

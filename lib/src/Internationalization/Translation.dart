@@ -71,6 +71,8 @@ class Translation extends Translations {
           'evalform': "Form of evaluation",
           'writedate': 'Date of writing',
           'value': 'Value',
+          'group': 'Group',
+          'lessonyearindex': 'Lesson year index',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -140,6 +142,8 @@ class Translation extends Translations {
           'evalform': 'Értékelés formája',
           'writedate': 'Írás ideje',
           'value': 'Érték',
+          'group': 'Csoport',
+          'lessonyearindex': 'Éves óraszám',
         }
       };
 }

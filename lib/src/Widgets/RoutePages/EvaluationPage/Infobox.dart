@@ -3,7 +3,7 @@ import 'package:penproject/src/Models/Evaluation.dart';
 import 'package:penproject/src/Models/Subject.dart';
 import 'package:penproject/src/Utils/format.dart';
 import 'package:penproject/src/Widgets/CardFoundation.dart';
-import 'package:penproject/src/Widgets/RoutePages/EvaluationPage/Infobox/InfoRow.dart';
+import 'package:penproject/src/Widgets/RoutePages/Infobox/InfoboxRow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 

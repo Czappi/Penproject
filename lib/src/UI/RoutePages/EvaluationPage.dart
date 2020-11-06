@@ -12,19 +12,20 @@ import 'package:penproject/src/Widgets/RoutePages/Foundation.dart';
 
 class EvaluationPage extends StatefulWidget {
   final bool asPage;
-  final String id;
-  EvaluationPage({@required this.asPage, @required this.id});
+
+  EvaluationPage({
+    @required this.asPage,
+  });
 
   @override
   _EvaluationPageState createState() => _EvaluationPageState();
 }
 
 class _EvaluationPageState extends State<EvaluationPage> {
-  String id;
+  String id = Get.arguments ?? Get.parameters['id'];
   @override
   void initState() {
     super.initState();
-    id = widget.id;
     Get.context.bloc<EvaluationPageBloc>().add(Load(id));
   }
 

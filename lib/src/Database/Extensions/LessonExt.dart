@@ -92,6 +92,21 @@ extension LessonExt on DatabaseProvider {
     }
   }
 
+  Future<Lesson> readLessonbyId(String id) async {
+    try {
+      var db = await database;
+      var res = await db.query("Lessons", where: "id = ?", whereArgs: [id]);
+
+      if (res.isNotEmpty)
+        return getLessonData(res.first);
+      else
+        return null;
+    } catch (e) {
+      print("DatabaseProvider (readLessons) ERROR : $e");
+      return null;
+    }
+  }
+
   Future<void> deleteLessons() async {
     try {
       var db = await database;

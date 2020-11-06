@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:penproject/src/Api/client.dart';
+import 'package:provider/provider.dart';
 import 'package:penproject/src/Models/School.dart';
 
 class SchoolController {
@@ -16,6 +19,12 @@ class SchoolController {
 
   select(School selected) {
     school = selected;
+  }
+
+  Future<School> getbyId(String id) async {
+    var schools = await Get.context.read<ApiClient>().getSchools();
+
+    return schools.firstWhere((element) => element.id == id);
   }
 
   search(List<School> all, String pattern) {

@@ -7,10 +7,15 @@ import 'package:penproject/src/Utils/format.dart';
 enum LessonType { basic, substitution, missed }
 
 class TimetableLessonTileBody extends StatelessWidget {
-  final String title, teacher, room, description;
+  final String title, teacher, room, description, id;
   final LessonType type;
   const TimetableLessonTileBody(
-      {this.type, this.title, this.teacher, this.room, this.description});
+      {this.type,
+      this.title,
+      this.teacher,
+      this.room,
+      this.description,
+      this.id});
   /*Container(
       width: ,
       padding: EdgeInsets.fromLTRB(20.sp, 15.sp, 20.sp, 15.sp),
@@ -25,7 +30,9 @@ class TimetableLessonTileBody extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed("/TimetablePage/$id");
+          },
           borderRadius: BorderRadius.all(Radius.circular(15.sp)),
           child: Ink(
             padding: EdgeInsets.fromLTRB(20.sp, 15.sp, 20.sp, 15.sp),

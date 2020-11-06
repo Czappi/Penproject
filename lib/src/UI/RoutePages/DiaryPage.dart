@@ -51,7 +51,6 @@ class _DiaryPageState extends State<DiaryPage> {
                   builder: (context, state) {
                 if (state is Loaded) {
                   if (state.data.containsKey('reloaded') != true) {
-                    print(state.data);
                     return DiaryPageBody(
                       averages: state.data['averages'],
                       evals: state.data['evals'],
