@@ -13,7 +13,10 @@ class EvalTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (id != null)
-          Get.bottomSheet(EvaluationPage());
+          Get.bottomSheet(EvaluationPage(
+            asPage: false,
+            id: id,
+          ));
         else
           errorSnackbar();
       },

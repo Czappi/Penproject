@@ -8,30 +8,29 @@ import 'package:penproject/src/Models/Subject.dart';
 import 'package:penproject/src/Widgets/ErrorWidget.dart';
 import 'package:penproject/src/Widgets/RoutePages/EvaluationPage/Infobox.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:penproject/src/Widgets/RoutePages/Foundation.dart';
 
 class EvaluationPage extends StatefulWidget {
-  EvaluationPage();
+  final bool asPage;
+  final String id;
+  EvaluationPage({@required this.asPage, @required this.id});
 
   @override
   _EvaluationPageState createState() => _EvaluationPageState();
 }
 
 class _EvaluationPageState extends State<EvaluationPage> {
-  String id = Get.parameters['id'];
+  String id;
   @override
   void initState() {
     super.initState();
+    id = widget.id;
     Get.context.bloc<EvaluationPageBloc>().add(Load(id));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      padding: EdgeInsets.all(8.sp),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18.sp),
-        color: Get.theme.cardColor,
-      ),
+    return foundation(
       child: BlocBuilder<EvaluationPageBloc, RoutePageState>(
           builder: (context, state) {
         if (state is Loaded) {
@@ -56,6 +55,25 @@ class _EvaluationPageState extends State<EvaluationPage> {
         }
       }),
     );
+  }
+
+  Widget foundation({Widget child}) {
+    if (widget.asPage) {
+      return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.lightBlueAccent,
+          ),
+          backgroundColor: Colors.lightBlueAccent,
+          body: RoutePageFoundation(child: child));
+    } else {
+      return Ink(
+          padding: EdgeInsets.all(8.sp),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18.sp),
+            color: Get.theme.cardColor,
+          ),
+          child: child);
+    }
   }
 }
 
