@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:penproject/src/Models/Lesson.dart';
-import 'package:penproject/src/Widgets/CardElement.dart';
+import 'package:penproject/src/Widgets/CardFoundation.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Home/Lessons/Body.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Home/Lessons/Title.dart';
 
@@ -10,7 +10,7 @@ class HomeLessons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardElement(
+    return CardFoundation(
         child: Column(
       children: [
         HomeLessonsTitle(

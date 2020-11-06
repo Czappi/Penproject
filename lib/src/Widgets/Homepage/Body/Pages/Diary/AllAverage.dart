@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:penproject/src/Widgets/CardFoundation.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/AveragesChart.dart';
 
 class DiaryAllAverage extends StatelessWidget {
@@ -9,13 +10,10 @@ class DiaryAllAverage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(8, 8, 8, 18),
-      decoration: BoxDecoration(
-          color: Get.isDarkMode
-              ? Colors.lightBlueAccent[700]
-              : Colors.lightBlueAccent,
-          borderRadius: BorderRadius.circular(18.sp)),
+    return CardFoundation(
+      padding: EdgeInsets.fromLTRB(8, 8, 8, 18),
+      color:
+          Get.isDarkMode ? Colors.lightBlueAccent[700] : Colors.lightBlueAccent,
       child: Column(
         children: [
           Container(
