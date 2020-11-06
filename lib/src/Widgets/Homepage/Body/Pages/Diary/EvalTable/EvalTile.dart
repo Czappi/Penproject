@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EvalTile extends StatelessWidget {
   final String value, id;
@@ -6,6 +7,9 @@ class EvalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(value);
+    return Padding(
+      padding: EdgeInsets.only(right: 3.sp),
+      child: Text(value),
+    );
   }
 }
