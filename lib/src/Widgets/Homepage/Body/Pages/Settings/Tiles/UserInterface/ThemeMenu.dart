@@ -26,7 +26,7 @@ class _SettingsUIThemeMenuState extends State<SettingsUIThemeMenu> {
     return SwitchListTile(
       title: Text('darkmode'.tr),
       value: darkmode,
-      onChanged: (bool value) {
+      onChanged: (bool value) async {
         setState(() {
           darkmode = value;
         });
@@ -35,7 +35,7 @@ class _SettingsUIThemeMenuState extends State<SettingsUIThemeMenu> {
 
         // setting function
         Get.changeThemeMode(mode);
-        context.read<SettingsProvider>().changeThemeMode(mode);
+        await context.read<SettingsProvider>().changeThemeMode(mode);
 
         // app restart
         RestartWidget.restartApp(context);

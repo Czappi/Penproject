@@ -62,45 +62,57 @@ class Main extends StatelessWidget {
             ),
             Provider(
               create: (context) => SettingsProvider(),
-            )
+            ),
+            FutureProvider(
+              create: (context) => SettingsProvider().initProvider(),
+            ),
             //Provider(create: (context) => UserProvider()),
           ],
           child: Builder(builder: (context) {
-            context.watch<SettingsProvider>().initProvider();
-            var themeMode = context.watch<SettingsProvider>().themeMode;
-            return RefreshConfiguration(
-                headerBuilder: () => MaterialClassicHeader(
-                      color: Get.theme.buttonColor,
-                      backgroundColor: Get.theme.cardColor,
-                    ),
-                child: GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: "Pen",
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  themeMode: themeMode,
-                  defaultTransition: Transition.downToUp,
-                  //initialRoute: "/",
-                  getPages: [
-                    //GetPage(name: "/", page: null),
-                    //GetPage(name: "/homepage", page: null),
-                    //GetPage(name: "/login", page: null),
-                    //GetPage(name: "/lesson", page: null),
-                    GetPage(name: "/DiaryPage/:id", page: () => DiaryPage()),
-                    GetPage(
-                        name: "/EvalPage/:id",
-                        page: () => EvaluationPage(
-                              asPage: true,
-                            )),
-                    GetPage(
-                        name: "/TimetablePage/:id",
-                        page: () => TimetablePage()),
-                  ],
-                  translations: Translation(), // your translations
-                  locale: Locale('hu', 'HU'),
-                  fallbackLocale: Locale('en', 'US'),
-                  home: AuthScreen(),
-                ));
+            return FutureBuilder(
+              future: context.watch<SettingsProvider>().initProvider(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var themeMode = context.watch<SettingsProvider>().themeMode;
+                  return RefreshConfiguration(
+                      headerBuilder: () => MaterialClassicHeader(
+                            color: Get.theme.buttonColor,
+                            backgroundColor: Get.theme.cardColor,
+                          ),
+                      child: GetMaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        title: "Pen",
+
+                        theme: lightTheme,
+                        darkTheme: darkTheme,
+                        themeMode: themeMode,
+                        defaultTransition: Transition.downToUp,
+                        //initialRoute: "/",
+                        getPages: [
+                          //GetPage(name: "/", page: null),
+                          //GetPage(name: "/homepage", page: null),
+                          //GetPage(name: "/login", page: null),
+                          //GetPage(name: "/lesson", page: null),
+                          GetPage(
+                              name: "/DiaryPage/:id", page: () => DiaryPage()),
+                          GetPage(
+                              name: "/EvalPage/:id",
+                              page: () => EvaluationPage(
+                                    asPage: true,
+                                  )),
+                          GetPage(
+                              name: "/TimetablePage/:id",
+                              page: () => TimetablePage()),
+                        ],
+                        translations: Translation(), // your translations
+                        locale: Locale('hu', 'HU'),
+                        fallbackLocale: Locale('en', 'US'),
+                        home: AuthScreen(),
+                      ));
+                } else
+                  return Container();
+              },
+            );
           })),
     );
   }
