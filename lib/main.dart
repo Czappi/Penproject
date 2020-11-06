@@ -66,20 +66,19 @@ class Main extends StatelessWidget {
             //Provider(create: (context) => UserProvider()),
           ],
           child: Builder(builder: (context) {
+            context.watch<SettingsProvider>().initProvider();
+            var themeMode = context.watch<SettingsProvider>().themeMode;
             return RefreshConfiguration(
                 headerBuilder: () => MaterialClassicHeader(
                       color: Get.theme.buttonColor,
                       backgroundColor: Get.theme.cardColor,
                     ),
                 child: GetMaterialApp(
-                  onInit: () {
-                    context.read<SettingsProvider>().initProvider();
-                  },
                   debugShowCheckedModeBanner: false,
                   title: "Pen",
                   theme: lightTheme,
                   darkTheme: darkTheme,
-                  themeMode: ThemeMode.system,
+                  themeMode: themeMode,
                   defaultTransition: Transition.downToUp,
                   //initialRoute: "/",
                   getPages: [

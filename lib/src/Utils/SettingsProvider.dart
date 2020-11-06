@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum DiaryType { table, tiles }
 
 String _diaryKey = "diarytable";
+String _themeKey = "darkmode";
 
 class SettingsProvider {
   DiaryType diary;
+  ThemeMode themeMode;
 
   void initProvider() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -17,11 +21,27 @@ class SettingsProvider {
       prefs.setBool(_diaryKey, true);
       diary = DiaryType.table;
     }
+
+    // init theme
+    if (prefs.containsKey(_themeKey)) {
+      themeMode = prefs.getBool(_themeKey) ? ThemeMode.dark : ThemeMode.light;
+    } else {
+      var darkmode =
+          MediaQuery.of(Get.context).platformBrightness == Brightness.dark;
+      prefs.setBool(_themeKey, darkmode);
+      themeMode = darkmode ? ThemeMode.dark : ThemeMode.light;
+    }
+  }
+
+  Future<void> changeThemeMode(ThemeMode mode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_themeKey, mode == ThemeMode.dark);
+    themeMode = mode;
   }
 
   Future<void> changeDiaryType(DiaryType type) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_diaryKey, type == DiaryType.table ? true : false);
+    await prefs.setBool(_diaryKey, type == DiaryType.table);
     diary = type;
   }
 
