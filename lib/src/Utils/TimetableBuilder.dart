@@ -19,58 +19,34 @@ class TimetableBuilder {
     if (schoolStart.weekday == 6 || schoolStart.weekday == 7)
       schoolStart = schoolStart.add(Duration(days: -schoolStart.weekday + 8));
 
-    // prev
-    prevstart = schoolStart
-        .add(Duration(days: 7 * (weekOfYear - 1) - (schoolStart.weekday - 1)));
-    if (prevstart.isBefore(DateTime(now.year, DateTime.september, 1))) {
-      prevstart = DateTime(now.year, DateTime.september, 1);
-    }
-
-    prevend = schoolStart
-        .add(Duration(days: 7 * (weekOfYear - 1) + (6 - schoolStart.weekday)));
-    if (DateTime(now.year, DateTime.september).isAfter(now)) {
-      if (prevend.isAfter(DateTime(now.year, DateTime.august, 31))) {
-        prevstart = DateTime(now.year, 9, 1);
+    Map<String, DateTime> startEnd(int weekOfYear) {
+      DateTime start, end;
+      start = schoolStart
+          .add(Duration(days: 7 * weekOfYear - (schoolStart.weekday - 1)));
+      if (start.isBefore(DateTime.utc(now.year, DateTime.september, 1))) {
+        start = DateTime.utc(now.year, DateTime.september, 1);
       }
-    }
-
-    // current week
-    currentstart = schoolStart
-        .add(Duration(days: 7 * weekOfYear - (schoolStart.weekday - 1)));
-    if (currentstart.isBefore(DateTime(now.year, DateTime.september, 1))) {
-      currentstart = DateTime(now.year, DateTime.september, 1);
-    }
-
-    currentend = schoolStart
-        .add(Duration(days: 7 * weekOfYear + (6 - schoolStart.weekday)));
-    if (DateTime(now.year, DateTime.september).isAfter(now)) {
-      if (currentend.isAfter(DateTime(now.year, DateTime.august, 31))) {
-        currentstart = DateTime(now.year, 9, 1);
+      end = schoolStart
+          .add(Duration(days: 7 * weekOfYear + (7 - schoolStart.weekday)));
+      if (DateTime.utc(now.year, DateTime.september).isAfter(now)) {
+        if (end.isAfter(DateTime.utc(now.year, DateTime.august, 31))) {
+          start = DateTime.utc(now.year, 9, 1);
+        }
       }
+      return {"start": start, "end": end};
     }
 
-    // next
-    nextstart = schoolStart
-        .add(Duration(days: 7 * (weekOfYear - 1) - (schoolStart.weekday - 1)));
-    if (nextstart.isBefore(DateTime(now.year, DateTime.september, 1))) {
-      nextstart = DateTime(now.year, DateTime.september, 1);
-    }
-
-    nextend = schoolStart
-        .add(Duration(days: 7 * (weekOfYear - 1) + (6 - schoolStart.weekday)));
-    if (DateTime(now.year, DateTime.september).isAfter(now)) {
-      if (nextend.isAfter(DateTime(now.year, DateTime.august, 31))) {
-        nextstart = DateTime(now.year, 9, 1);
-      }
-    }
+    var prev = startEnd(weekOfYear - 1);
+    var current = startEnd(weekOfYear);
+    var next = startEnd(weekOfYear + 1);
 
     return {
-      'prevstart': prevstart,
-      'prevend': prevend,
-      'currentstart': currentstart,
-      "currentend": currentend,
-      'nextstart': nextstart,
-      'nextend': nextend,
+      'prevstart': prev['start'],
+      'prevend': prev["end"],
+      'currentstart': current["start"],
+      "currentend": current["end"],
+      'nextstart': next["start"],
+      'nextend': next['end'],
     };
   }
 
