@@ -16,13 +16,12 @@ class TimetablePageInfobox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: CardFoundation(
-          padding: EdgeInsets.all(5.sp),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: children(l, s),
-          )),
+    return CardFoundation(
+      //padding: EdgeInsets.all(5.sp),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: children(l, s),
+      ),
     );
   }
 }
@@ -65,7 +64,7 @@ List<Widget> children(Lesson l, Subject s) {
           width: 10.w,
         ),
         Text(
-          (l.substituteTeacher != null)
+          (l.substituteTeacher != "")
               ? l.substituteTeacher.toString()
               : l.teacher.toString(),
           style: Get.textTheme.headline5.apply(
@@ -77,7 +76,7 @@ List<Widget> children(Lesson l, Subject s) {
       ],
     )));
   }
-  if (l.room != null) {
+  if (l.room != "") {
     list.add(CustomInfoboxRow(
         child: Row(
       children: [
@@ -99,20 +98,25 @@ List<Widget> children(Lesson l, Subject s) {
       ],
     )));
   }
-  if (s.name != null) {
+  if (list.isNotEmpty) {
+    list.add(Divider(
+      color: Get.isDarkMode ? Colors.grey[900] : Colors.grey[400],
+    ));
+  }
+  if (s.name != "") {
     list.add(InfoboxRow(
       title: "subject".tr,
       text: "${s.name}",
     ));
   }
-  if (l.groupName != null) {
+  if (l.groupName != "") {
     if (s.id != null)
       list.add(InfoboxRow(
         title: "group".tr,
         text: "${l.groupName}",
       ));
   }
-  if (l.description != null) {
+  if (l.description != "") {
     list.add(InfoboxRow(
       title: "description".tr,
       text: "${l.description}",

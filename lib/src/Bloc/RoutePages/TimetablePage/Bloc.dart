@@ -24,27 +24,28 @@ class TimetablePageBloc extends Bloc<RoutePageEvent, RoutePageState> {
     if (event is Load) {
       try {
         yield Loading();
-
         if (event.id != null) {
           DatabaseProvider db = DatabaseProvider(client.clientId);
+          var lesson = await db.readLessonbyUid(event.id);
 
-          var evals = await db.readEvaluationsbySubjectId(event.id);
+          if (lesson != null) {
+            var subject = await db.getSubjectbyId(lesson.subject.id);
+            var evals = await db.readEvaluationsbySubjectId(lesson.subject.id);
 
-          var subject = await db.getSubjectbyId(event.id);
-
-          var lesson = await db.readAllLessons();
-
-          if (evals != null && subject != null) {
-            var _evalTableRows =
-                await evalTableRows(db, evals: evals, printSubject: false);
-            var averages = getAverages(evals);
-
-            yield Loaded({
-              'averages': averages,
-              'evaltablerows': _evalTableRows,
-              'lesson': lesson,
-              'subject': subject,
-            });
+            if (evals != null && subject != null) {
+              var _evalTableRows =
+                  await evalTableRows(db, evals: evals, printSubject: false);
+              var averages = getAverages(evals);
+              print("$lesson $subject");
+              yield Loaded({
+                'averages': averages,
+                'evaltablerows': _evalTableRows,
+                'lesson': lesson,
+                'subject': subject,
+              });
+            } else {
+              yield Loaded(await refreshTimetablePage());
+            }
           } else {
             yield Loaded(await refreshTimetablePage());
           }

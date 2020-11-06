@@ -23,7 +23,7 @@ class EvalTile extends StatelessWidget {
       },
       child: Padding(
         padding: EdgeInsets.all(5.sp),
-        child: Text(value),
+        child: Text((value == '0') ? "-" : value),
       ),
     );
   }

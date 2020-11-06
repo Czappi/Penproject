@@ -92,11 +92,10 @@ extension LessonExt on DatabaseProvider {
     }
   }
 
-  Future<Lesson> readLessonbyId(String id) async {
+  Future<Lesson> readLessonbyUid(String uid) async {
     try {
       var db = await database;
-      var res = await db.query("Lessons", where: "id = ?", whereArgs: [id]);
-
+      var res = await db.query("Lessons", where: "uid = ?", whereArgs: [uid]);
       if (res.isNotEmpty)
         return getLessonData(res.first);
       else
