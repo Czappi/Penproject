@@ -36,7 +36,6 @@ class TimetablePageBloc extends Bloc<RoutePageEvent, RoutePageState> {
               var _evalTableRows =
                   await evalTableRows(db, evals: evals, printSubject: false);
               var averages = getAverages(evals);
-              print("$lesson $subject");
               yield Loaded({
                 'averages': averages,
                 'evaltablerows': _evalTableRows,
