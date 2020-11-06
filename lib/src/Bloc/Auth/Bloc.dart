@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/Api/client.dart';
+import 'package:penproject/src/Utils/SchoolController.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
 
@@ -38,7 +39,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               } else {
                 Get.snackbar('loginwrongTitle'.tr, 'loginwrongMsg'.tr);
                 yield AuthLogin(
-                    username: lastUser.username, password: lastUser.password);
+                    username: lastUser.username,
+                    password: lastUser.password,
+                    school: await SchoolController()
+                        .getbyId(lastUser.instituteCode));
               }
             } else {
               client.fillLoginData(lastUser);
@@ -63,8 +67,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               await db.login(
                   user: event.user, name: client.name, userid: client.userId);
               yield AuthLoggedIn();
-            } else {
+            } else if (ready == false) {
               Get.snackbar('loginwrongTitle'.tr, 'loginwrongMsg'.tr);
+              yield AuthLogin();
+            } else {
+              Get.snackbar('oops'.tr, 'erroroccurred'.tr);
               yield AuthLogin();
             }
           } else {

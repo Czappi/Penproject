@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:penproject/src/Models/School.dart';
 import 'package:penproject/src/Models/User.dart';
 
 abstract class AuthState extends Equatable {
@@ -12,7 +13,8 @@ class AuthInitial extends AuthState {}
 
 class AuthLogin extends AuthState {
   final String username, password;
-  AuthLogin({this.username, this.password});
+  final School school;
+  AuthLogin({this.username, this.password, this.school});
 }
 
 class AuthAccount extends AuthState {

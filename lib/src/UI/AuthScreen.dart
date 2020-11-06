@@ -59,6 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
       return AuthScreenLogin(
         username: state.username ?? null,
         password: state.password ?? null,
+        school: state.school ?? null,
       );
     } else if (state is AuthAccount) {
       // TODO: ha több profil van: bejelentkezés

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/Bloc/Auth/Bloc.dart';
 import 'package:penproject/src/Bloc/Auth/Event.dart';
+import 'package:penproject/src/Models/School.dart';
 import 'package:penproject/src/Models/User.dart';
 import 'package:penproject/src/Utils/SchoolController.dart';
 import 'package:penproject/src/Widgets/Auth/Login/SchoolSelect.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthScreenLoginForm extends StatefulWidget {
   final String username, password;
-  AuthScreenLoginForm({this.username, this.password});
+  final School school;
+  AuthScreenLoginForm({this.username, this.password, this.school});
 
   @override
   _AuthScreenLoginFormState createState() => _AuthScreenLoginFormState();
@@ -22,6 +24,12 @@ class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
   String username;
   String password;
   bool schoolred = false;
+
+  @override
+  void initState() {
+    schoolController.select(widget.school);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
