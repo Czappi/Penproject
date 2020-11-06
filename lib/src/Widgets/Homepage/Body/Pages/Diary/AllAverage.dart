@@ -11,7 +11,7 @@ class DiaryAllAverage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardFoundation(
-      padding: EdgeInsets.fromLTRB(8, 8, 8, 18),
+      margin: EdgeInsets.fromLTRB(8, 8, 8, 18),
       color:
           Get.isDarkMode ? Colors.lightBlueAccent[700] : Colors.lightBlueAccent,
       child: Column(
