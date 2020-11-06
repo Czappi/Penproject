@@ -65,6 +65,12 @@ class Translation extends Translations {
           'User Interface': 'User Interface',
           'darkmode': 'Dark mode',
           'diarytable': 'Diary table',
+          'teacher': 'Teacher',
+          'description': 'Description',
+          'type': 'Type',
+          'evalform': "Form of evaluation",
+          'writedate': 'Date of writing',
+          'value': 'Value',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -128,6 +134,12 @@ class Translation extends Translations {
           'User Interface': 'Felhasználói felület',
           'darkmode': 'Sötét mód',
           'diarytable': 'Napló táblázat',
+          'teacher': 'Tanár',
+          'description': 'Leírás',
+          'type': 'Típus',
+          'evalform': 'Értékelés formája',
+          'writedate': 'Írás ideje',
+          'value': 'Érték',
         }
       };
 }

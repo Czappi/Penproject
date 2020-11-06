@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart'
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
+import 'package:penproject/src/UI/RoutePages/EvaluationPage.dart';
 import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ import 'package:penproject/src/Internationalization/Translation.dart';
 import 'package:penproject/src/Bloc/Absences.dart';
 import 'package:penproject/src/Bloc/Diary.dart';
 import 'package:penproject/src/Bloc/DiaryPage.dart';
+import 'package:penproject/src/Bloc/EvaluationPage.dart';
 import 'package:penproject/src/Bloc/Navigation.dart';
 import 'package:penproject/src/Bloc/Auth.dart';
 import 'package:penproject/src/Bloc/Student.dart';
@@ -50,6 +52,7 @@ class Main extends StatelessWidget {
         BlocProvider(create: (context) => AbsencesBloc()),
         BlocProvider(create: (context) => TimetablePageBloc()),
         BlocProvider(create: (context) => DiaryPageBloc()),
+        BlocProvider(create: (context) => EvaluationPageBloc()),
       ],
       child: MultiProvider(
           providers: [
@@ -83,7 +86,9 @@ class Main extends StatelessWidget {
                     //GetPage(name: "/homepage", page: null),
                     //GetPage(name: "/login", page: null),
                     //GetPage(name: "/lesson", page: null),
-                    GetPage(name: "/DiaryPage/:id", page: () => DiaryPage())
+                    GetPage(name: "/DiaryPage/:id", page: () => DiaryPage()),
+                    GetPage(
+                        name: "/EvalPage/:id", page: () => EvaluationPage()),
                   ],
                   translations: Translation(), // your translations
                   locale: Locale('hu', 'HU'),

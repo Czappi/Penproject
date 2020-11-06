@@ -9,9 +9,9 @@ class CardFoundation extends StatelessWidget {
   ///
   /// default:
   /// ```dart
-  /// EdgeInsets.fromLTRB(10, 10, 10, 10)
+  /// EdgeInsets.all(8.sp)
   /// ```
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry padding, margin;
 
   /// Color of the box
   ///
@@ -21,7 +21,8 @@ class CardFoundation extends StatelessWidget {
   /// ```
   final Color color;
 
-  const CardFoundation({@required this.child, this.padding, this.color});
+  const CardFoundation(
+      {@required this.child, this.padding, this.color, this.margin});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class CardFoundation extends StatelessWidget {
                     child: child))));
         */
     return Padding(
-        padding: padding ?? EdgeInsets.all(8.sp),
+        padding: margin ?? EdgeInsets.all(8.sp),
         child: Ink(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
@@ -46,6 +47,7 @@ class CardFoundation extends StatelessWidget {
               ),
               color: color ?? Get.theme.cardColor, //Color(0xff232d37)
             ),
+            padding: padding ?? EdgeInsets.all(8.sp),
             child: child));
   }
 }

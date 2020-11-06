@@ -53,6 +53,7 @@ Future<List<DataRow>> evalTableRows(DatabaseProvider db,
           var value = element.value.value;
           tiles.add(EvalTile(
             value: (value != null) ? value.toString() : "-",
+            id: element.id,
           ));
         });
 

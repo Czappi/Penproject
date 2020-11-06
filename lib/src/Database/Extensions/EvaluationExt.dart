@@ -73,6 +73,28 @@ extension EvaluationExt on DatabaseProvider {
     }
   }
 
+  Future<Evaluation> readEvaluationsbyId(String id) async {
+    var db = await database;
+
+    try {
+      var schoolstart = getSchoolStartDate();
+      var res = await db.query('Evaluations',
+          where:
+              "id = ? AND date BETWEEN datetime(?) and datetime(?,'+10 month') ",
+          whereArgs: [
+            id,
+            schoolstart.toUtc().toIso8601String(),
+            schoolstart.toUtc().toIso8601String()
+          ]);
+      if (res.isNotEmpty) {
+        return getEvaluationData(res.first);
+      }
+    } catch (e) {
+      print("DatabaseProvider ERROR : $e");
+      return null;
+    }
+  }
+
   Future<double> readAllAverages() async {
     var db = await database;
 
