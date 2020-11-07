@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:penproject/src/Models/Lesson.dart';
 import 'package:penproject/src/Models/Student.dart';
-import 'package:penproject/src/Models/Subject.dart';
 import 'package:penproject/src/Utils/format.dart';
 import 'package:penproject/src/Widgets/CardFoundation.dart';
-import 'package:penproject/src/Widgets/RoutePages/Infobox/CustomInfoboxRow.dart';
 import 'package:penproject/src/Widgets/RoutePages/Infobox/InfoboxRow.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ProfilePageInfobox extends StatelessWidget {

@@ -94,7 +94,6 @@ class _HomepageState extends State<Homepage> {
                               onOpen: () => _innerDrawerKey.currentState.open(),
                             ),
                             actions: [
-                              // TODO: profil oldal
                               ProfileIcon(),
                             ],
                           ),

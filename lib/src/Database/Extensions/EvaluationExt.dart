@@ -88,6 +88,8 @@ extension EvaluationExt on DatabaseProvider {
           ]);
       if (res.isNotEmpty) {
         return getEvaluationData(res.first);
+      } else {
+        return null;
       }
     } catch (e) {
       print("DatabaseProvider ERROR : $e");

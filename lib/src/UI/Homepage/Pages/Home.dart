@@ -10,7 +10,6 @@ import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/AllAverage.dart
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Home/Lessons.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-// TODO
 class HomepageHome extends StatefulWidget {
   HomepageHome({Key key}) : super(key: key);
 

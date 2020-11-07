@@ -4,12 +4,6 @@ class TimetableBuilder {
     // Returns the current week of the school year
     final now = DateTime.now();
     DateTime schoolStart;
-    DateTime prevstart;
-    DateTime prevend;
-    DateTime currentstart;
-    DateTime currentend;
-    DateTime nextstart;
-    DateTime nextend;
 
     if (DateTime(now.year, DateTime.september).isAfter(now))
       schoolStart = DateTime(now.year - 1, DateTime.september, 1);

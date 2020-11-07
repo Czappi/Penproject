@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:penproject/src/Widgets/CardFoundation.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Diary/EvalTable/Columns.dart';
 
