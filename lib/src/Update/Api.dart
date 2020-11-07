@@ -22,7 +22,6 @@ class UpdateSystem {
 
     var downloadLink = asset.browserDownloadUrl;
     var name = asset.name;
-    print(name);
     var taskId = await FlutterDownloader.enqueue(
         url: downloadLink,
         fileName: name,

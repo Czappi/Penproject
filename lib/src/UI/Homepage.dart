@@ -40,9 +40,9 @@ class _HomepageState extends State<Homepage> {
       } else if (shortcutType == 'action_diary') {
         Get.context.bloc<NavigationBloc>().add(Diary());
       } else if (shortcutType == 'action_homework') {
-        Get.context.bloc<NavigationBloc>().add(Diary());
+        Get.context.bloc<NavigationBloc>().add(Homework());
       } else if (shortcutType == 'action_absences') {
-        Get.context.bloc<NavigationBloc>().add(Diary());
+        Get.context.bloc<NavigationBloc>().add(Absences());
       }
     });
 
@@ -54,10 +54,10 @@ class _HomepageState extends State<Homepage> {
       ),
       const ShortcutItem(
           type: 'action_diary', localizedTitle: 'Napló', icon: 'ic_book'),
-      const ShortcutItem(
+      /*const ShortcutItem(
           type: 'action_homework',
           localizedTitle: 'Házi feladatok',
-          icon: 'ic_folder'),
+          icon: 'ic_folder'), */
       const ShortcutItem(
           type: 'action_absences',
           localizedTitle: 'Hiányzások',
