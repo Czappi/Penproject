@@ -7,6 +7,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 import 'package:get/get.dart';
 import 'package:penproject/src/UI/Homepage/Body.dart';
 import 'package:penproject/src/UI/Homepage/Drawer.dart';
+import 'package:penproject/src/Update/Bloc.dart';
 import 'package:penproject/src/Widgets/Homepage/Appbar/Menu.dart';
 import 'package:penproject/src/Widgets/OfflineIndicator.dart';
 import 'package:penproject/src/Widgets/ProfileIcon.dart';
@@ -62,13 +63,14 @@ class _HomepageState extends State<Homepage> {
           localizedTitle: 'Hiányzások',
           icon: 'ic_x_circle'),
     ]);
+
+    context.bloc<DownloaderBloc>().add(CheckUpdate());
   }
 
   @override
   Widget build(BuildContext context) {
     return OfflineBuilder(
         connectivityBuilder: (context, connectivity, widget) {
-          print((connectivity == ConnectivityResult.none));
           return Stack(
             children: [
               Column(

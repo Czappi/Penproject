@@ -64,6 +64,12 @@ dependencies:
   quick_actions: ^0.4.0+9
   shared_preferences: ^0.5.12+2
 
+  # Update
+  github: ^7.0.3
+  flutter_downloader: ^1.5.2
+  ext_storage: ^1.0.3
+  permission_handler: ^5.0.1+1
+  package_info: ^0.4.3+2
 
   
 

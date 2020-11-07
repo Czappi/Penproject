@@ -77,6 +77,11 @@ class Translation extends Translations {
           'address': 'Address',
           'parents': 'Parents',
           'logout': 'Logout',
+          'update': 'Update',
+          'newupdate': 'New update available!',
+          'updatedownload': 'Download',
+          'updateinstall': 'Install',
+          'next': 'Next',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -152,6 +157,11 @@ class Translation extends Translations {
           'address': 'Lakcím',
           'parents': 'Szülők',
           'logout': 'Kijelentkezés',
+          'update': 'Frissítés',
+          'newupdate': 'Új frissítés elérhető!',
+          'updatedownload': 'Frissítés letöltése',
+          'updateinstall': 'Frissítés telepítése',
+          'next': 'Következő',
         }
       };
 }

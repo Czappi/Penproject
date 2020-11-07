@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'
     show MultiBlocProvider, BlocProvider;
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/Bloc/ProfilePage.dart';
@@ -9,6 +9,8 @@ import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
 import 'package:penproject/src/UI/RoutePages/EvaluationPage.dart';
 import 'package:penproject/src/UI/RoutePages/ProfilePage.dart';
 import 'package:penproject/src/UI/RoutePages/TimetablePage.dart';
+import 'package:penproject/src/Update/Bloc.dart';
+import 'package:penproject/src/Update/UpdatePage.dart';
 import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +33,9 @@ import 'package:penproject/src/Bloc/Student.dart';
 import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:penproject/src/Bloc/TimetablePage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(debug: false);
   runApp(RestartWidget(
     child: Main(),
   ));
@@ -53,6 +57,7 @@ class Main extends StatelessWidget {
         BlocProvider(create: (context) => DiaryPageBloc()),
         BlocProvider(create: (context) => EvaluationPageBloc()),
         BlocProvider(create: (context) => ProfilePageBloc()),
+        BlocProvider(create: (context) => DownloaderBloc()),
       ],
       child: MultiProvider(
           providers: [
@@ -105,6 +110,8 @@ class Main extends StatelessWidget {
                           GetPage(
                               name: "/ProfilePage/:id",
                               page: () => ProfilePage()),
+                          GetPage(
+                              name: "/UpdatePage", page: () => UpdatePage()),
                         ],
                         translations: Translation(), // your translations
                         locale: Locale('hu', 'HU'),
