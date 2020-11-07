@@ -73,6 +73,10 @@ class Translation extends Translations {
           'value': 'Value',
           'group': 'Group',
           'lessonyearindex': 'Lesson year index',
+          'birth': 'Birth',
+          'address': 'Address',
+          'parents': 'Parents',
+          'logout': 'Logout',
         },
         'hu_HU': {
           'login': 'Bejelentkezés',
@@ -144,6 +148,10 @@ class Translation extends Translations {
           'value': 'Érték',
           'group': 'Csoport',
           'lessonyearindex': 'Éves óraszám',
+          'birth': 'Születés ideje',
+          'address': 'Lakcím',
+          'parents': 'Szülők',
+          'logout': 'Kijelentkezés',
         }
       };
 }

@@ -27,25 +27,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           if (users.where((element) => element.loggedIn == true).length >= 1) {
             yield AuthAccount(users);
           } else {
-            var lastUser = await db.getUserbyLastLoggedIn();
+            var lastLoggedIn = await db.getUserbyLastLoggedIn();
 
             var connectivityResult = await (Connectivity().checkConnectivity());
             if (connectivityResult != ConnectivityResult.none) {
-              var loggedin = await client.login(lastUser);
-              if (loggedin == true) {
-                await db.login(
-                    user: lastUser, name: client.name, userid: client.userId);
-                yield AuthLoggedIn();
+              if (lastLoggedIn != null) {
+                var loggedin = await client.login(lastLoggedIn);
+                if (loggedin == true) {
+                  await db.login(
+                      user: lastLoggedIn,
+                      name: client.name,
+                      userid: client.userId);
+                  yield AuthLoggedIn();
+                } else {
+                  Get.snackbar('loginwrongTitle'.tr, 'loginwrongMsg'.tr);
+                  yield AuthLogin(
+                      username: lastLoggedIn.username,
+                      school: await SchoolController()
+                          .getbyId(lastLoggedIn.instituteCode));
+                }
               } else {
-                Get.snackbar('loginwrongTitle'.tr, 'loginwrongMsg'.tr);
+                var lastLoggedOut = await db.getUserbyLastLoggedOut();
                 yield AuthLogin(
-                    username: lastUser.username,
-                    password: lastUser.password,
+                    username: lastLoggedOut.username,
                     school: await SchoolController()
-                        .getbyId(lastUser.instituteCode));
+                        .getbyId(lastLoggedOut.instituteCode));
               }
             } else {
-              client.fillLoginData(lastUser);
+              client.fillLoginData(lastLoggedIn);
               yield AuthLoggedIn();
             }
           }

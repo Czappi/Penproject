@@ -21,13 +21,14 @@ class AuthScreenLoginForm extends StatefulWidget {
 class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
   final _formKey = GlobalKey<FormState>();
   SchoolController schoolController = Get.find();
-  String username;
-  String password;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool schoolred = false;
 
   @override
   void initState() {
     schoolController.select(widget.school);
+    if (widget.username != null) usernameController.text = widget.username;
     super.initState();
   }
 
@@ -39,9 +40,11 @@ class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-            initialValue: widget.username ?? null,
+            controller: usernameController,
+            //initialValue: widget.username ?? null,
             obscureText: false,
             decoration: InputDecoration(labelText: "username".tr),
+            /*
             onChanged: (s) {
               username = s;
             },
@@ -50,13 +53,14 @@ class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
                 return 'loginempty'.tr;
               }
               return null;
-            },
+            },*/
           ),
           TextFormField(
-            initialValue: widget.password ?? null,
+            controller: passwordController,
+            //initialValue: widget.password ?? null,
             obscureText: true,
             decoration: InputDecoration(labelText: "password".tr),
-            onChanged: (s) {
+            /*onChanged: (s) {
               password = s;
             },
             validator: (s) {
@@ -64,7 +68,7 @@ class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
                 return 'loginempty'.tr;
               }
               return null;
-            },
+            },*/
           ),
           SizedBox(
             height: 10.h,
@@ -100,6 +104,10 @@ class _AuthScreenLoginFormState extends State<AuthScreenLoginForm> {
                 onPressed: () {
                   var validate = _formKey.currentState.validate();
                   if (validate && schoolController.school != null) {
+                    var username = usernameController.text;
+                    var password = passwordController.text;
+                    print(
+                        "$username - $password - ${schoolController.school.id}");
                     Get.context.bloc<AuthBloc>().add(LoginAuth(User(
                         username: username,
                         password: password,

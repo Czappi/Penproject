@@ -105,6 +105,27 @@ class UserDatabase {
     return (user != null) ? user : null;
   }
 
+  Future<User> getUserbyLastLoggedOut() async {
+    var db = await database;
+    User user;
+
+    var res = await db.query("Users",
+        where: "loggedin = ?",
+        whereArgs: [false.toString()],
+        orderBy: "date(lastlogin) DESC");
+    if (res.isNotEmpty) {
+      var first = res.first;
+      user = User(
+          id: first["id"],
+          username: first["username"],
+          password: first["password"],
+          instituteCode: first["instituteCode"],
+          loggedIn: bool.fromEnvironment(first["loggedin"]),
+          lastLogin: DateTime.parse(first["lastlogin"]));
+    }
+    return (user != null) ? user : null;
+  }
+
   Future<List<User>> getUsers() async {
     var db = await database;
     List<User> users = [];

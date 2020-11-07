@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart'
     show MultiBlocProvider, BlocProvider;
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
+import 'package:penproject/src/Bloc/ProfilePage.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
 import 'package:penproject/src/UI/RoutePages/EvaluationPage.dart';
+import 'package:penproject/src/UI/RoutePages/ProfilePage.dart';
 import 'package:penproject/src/UI/RoutePages/TimetablePage.dart';
 import 'package:penproject/src/Utils/SettingsProvider.dart';
 import 'package:penproject/src/Widgets/RestartWidget.dart';
@@ -50,6 +52,7 @@ class Main extends StatelessWidget {
         BlocProvider(create: (context) => TimetablePageBloc()),
         BlocProvider(create: (context) => DiaryPageBloc()),
         BlocProvider(create: (context) => EvaluationPageBloc()),
+        BlocProvider(create: (context) => ProfilePageBloc()),
       ],
       child: MultiProvider(
           providers: [
@@ -99,6 +102,9 @@ class Main extends StatelessWidget {
                           GetPage(
                               name: "/TimetablePage/:id",
                               page: () => TimetablePage()),
+                          GetPage(
+                              name: "/ProfilePage/:id",
+                              page: () => ProfilePage()),
                         ],
                         translations: Translation(), // your translations
                         locale: Locale('hu', 'HU'),

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:penproject/src/Models/Data.dart';
 import 'package:penproject/src/Models/Subject.dart';
-import 'package:penproject/src/Utils/generateUserId.dart';
+import 'package:penproject/src/Utils/generateUIDs.dart';
 import 'package:supercharged/supercharged.dart';
 
 class Lesson extends Equatable {

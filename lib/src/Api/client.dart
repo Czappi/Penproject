@@ -19,7 +19,7 @@ import 'package:penproject/src/Models/Student.dart';
 import 'package:penproject/src/Models/Subject.dart';
 import 'package:penproject/src/Models/User.dart';
 import 'package:penproject/src/Utils/format.dart';
-import 'package:penproject/src/Utils/generateUserId.dart';
+import 'package:penproject/src/Utils/generateUIDs.dart';
 import 'package:penproject/src/Utils/parseJwt.dart';
 import 'package:penproject/src/Utils/Constants/Api.dart';
 
@@ -32,6 +32,7 @@ class ApiClient {
   String instituteCode;
   String userId;
   String name;
+  String encryptedName;
 
   void fillLoginData(User user) {
     instituteCode = user.instituteCode;
@@ -71,6 +72,7 @@ class ApiClient {
         instituteCode = user.instituteCode;
         userId = generateUserId(user.username, user.instituteCode);
         name = parseJwt(accessToken)["name"];
+        encryptedName = encryptName(name);
         /*
         await UserDatabase.db.login(
             username: user.username,
