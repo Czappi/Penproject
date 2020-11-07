@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OfflineIndicator extends StatelessWidget {
   final ConnectivityResult connectivityResult;
@@ -26,11 +27,13 @@ class OfflineIndicator extends StatelessWidget {
     if (connectivityResult == ConnectivityResult.none) {
       return Container(
         width: double.infinity,
-        height: 30,
-        color: Colors.grey[600],
-        child: Center(
+        height: 50.h,
+        color: Colors.redAccent,
+        child: Align(
+          alignment: Alignment.bottomCenter,
           child: Text('offlinemode'.tr,
-              style: Get.textTheme.headline5.apply(color: Colors.grey[200])),
+              style: Get.textTheme.headline5
+                  .apply(color: Colors.black54, fontSizeFactor: 0.8)),
         ),
       );
     } else {

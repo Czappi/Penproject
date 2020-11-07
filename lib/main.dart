@@ -30,10 +30,6 @@ import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:penproject/src/Bloc/TimetablePage.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //systemNavigationBarColor: Colors.blue, // navigation bar color
-    statusBarColor: Colors.transparent, // status bar color
-  ));
   runApp(RestartWidget(
     child: Main(),
   ));
