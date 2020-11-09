@@ -10,7 +10,6 @@ extension LessonExt on DatabaseProvider {
     var batch = db.batch();
     try {
       if (lessons != null) {
-        print(lessons.where((element) => element.subject == null).first.start);
         lessons.forEach((e) {
           //print(e.props);
           if (e != null) {
