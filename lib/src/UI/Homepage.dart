@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:get/get.dart';
+import 'package:penproject/main.dart';
+import 'package:penproject/src/Notifications/NotificationHelper.dart';
 import 'package:penproject/src/UI/Homepage/Body.dart';
 import 'package:penproject/src/UI/Homepage/Drawer.dart';
 import 'package:penproject/src/Update/Bloc.dart';
@@ -33,6 +35,14 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    selectNotificationSubject.listen((payload) {
+      NotificationHelper()
+          .payloadRoute(payload, page: "EvalPage", code: "eval");
+      NotificationHelper()
+          .payloadNavigation(payload, page: Absences(), code: "absences");
+      NotificationHelper()
+          .payloadRoute(payload, page: "TimetablePage", code: "timetable");
+    });
     final QuickActions quickActions = QuickActions();
     quickActions.initialize((shortcutType) {
       if (shortcutType == 'action_timetable') {

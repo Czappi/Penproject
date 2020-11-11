@@ -1,3 +1,4 @@
+import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'
     show MultiBlocProvider, BlocProvider;
@@ -5,6 +6,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:penproject/src/Api/client.dart';
 import 'package:penproject/src/Bloc/Home.dart';
 import 'package:penproject/src/Bloc/ProfilePage.dart';
+import 'package:penproject/src/Notifications/NotificationHelper.dart';
 import 'package:penproject/src/UI/RoutePages/DiaryPage.dart';
 import 'package:penproject/src/UI/RoutePages/EvaluationPage.dart';
 import 'package:penproject/src/UI/RoutePages/ProfilePage.dart';
@@ -32,16 +34,52 @@ import 'package:penproject/src/Bloc/Auth.dart';
 import 'package:penproject/src/Bloc/Student.dart';
 import 'package:penproject/src/Bloc/Timetable.dart';
 import 'package:penproject/src/Bloc/TimetablePage.dart';
+import 'package:rxdart/subjects.dart';
+
+final BehaviorSubject<String> selectNotificationSubject =
+    BehaviorSubject<String>();
+
+final NotificationHelper notificationHelper = NotificationHelper();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(debug: false);
+  await notificationHelper
+      .init((payload) async => selectNotificationSubject.add(payload));
   runApp(RestartWidget(
     child: Main(),
   ));
+
+  BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 }
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
+  @override
+  _MainState createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  @override
+  void initState() {
+    BackgroundFetch.configure(
+        BackgroundFetchConfig(
+          minimumFetchInterval: 15,
+          forceAlarmManager: false,
+          stopOnTerminate: false,
+          startOnBoot: true,
+          enableHeadless: true,
+          requiresBatteryNotLow: false,
+          requiresCharging: false,
+          requiresStorageNotLow: false,
+          requiresDeviceIdle: false,
+          requiredNetworkType: NetworkType.NONE,
+        ), (String taskId) {
+      if (taskId == "com.czappi.notification")
+        NotificationHelper().backgroundTask();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

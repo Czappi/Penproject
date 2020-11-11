@@ -9,9 +9,18 @@ enum DiaryType { table, tiles }
 String _diaryKey = "diarytable";
 String _themeKey = "darkmode";
 
+String _notifIntervalKey = _notifKey("interval");
+String _notifOnlyWifiKey = _notifKey("onlywifi");
+String _notifLastRefreshKey = _notifKey("last");
+
+String _notifKey(String tag) => "notif.$tag";
+
 class SettingsProvider {
   DiaryType diary;
   ThemeMode themeMode;
+  Duration refreshInterval;
+  bool refreshOnlyWifi;
+  DateTime refreshLast;
 
   Future<bool> initProvider() async {
     try {
@@ -33,6 +42,32 @@ class SettingsProvider {
             MediaQuery.of(Get.context).platformBrightness == Brightness.dark;
         prefs.setBool(_themeKey, darkmode);
         themeMode = darkmode ? ThemeMode.dark : ThemeMode.light;
+      }
+
+      // init notification
+      if (prefs.containsKey(_notifOnlyWifiKey)) {
+        refreshOnlyWifi = prefs.getBool(_notifOnlyWifiKey);
+      } else {
+        prefs.setBool(_notifOnlyWifiKey, true);
+        refreshOnlyWifi = true;
+      }
+      //
+      if (prefs.containsKey(_notifIntervalKey)) {
+        refreshInterval =
+            Duration(milliseconds: prefs.getInt(_notifIntervalKey));
+      } else {
+        var d = Duration(minutes: 30);
+        prefs.setInt(_notifIntervalKey, d.inMilliseconds);
+        refreshInterval = d;
+      }
+      //
+      if (prefs.containsKey(_notifLastRefreshKey)) {
+        refreshLast = DateTime.fromMillisecondsSinceEpoch(
+            prefs.getInt(_notifLastRefreshKey));
+      } else {
+        var d = DateTime.now();
+        prefs.setInt(_notifLastRefreshKey, d.millisecondsSinceEpoch);
+        refreshLast = d;
       }
 
       return true;

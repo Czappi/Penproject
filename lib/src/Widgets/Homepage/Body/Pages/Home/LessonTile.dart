@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:penproject/src/Models/Lesson.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Home/Tile/Body.dart';
 import 'package:penproject/src/Widgets/Homepage/Body/Pages/Home/Tile/Divider.dart';
@@ -24,7 +25,9 @@ class HomeLessonTile extends StatelessWidget {
       child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed("/TimetablePage/${lesson.uid}");
+            },
             borderRadius: BorderRadius.circular(18.sp),
             child: Ink(
               decoration: BoxDecoration(

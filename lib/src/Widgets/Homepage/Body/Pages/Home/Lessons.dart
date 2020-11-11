@@ -8,6 +8,16 @@ class HomeLessons extends StatelessWidget {
   final List<Lesson> lessons;
   const HomeLessons({this.lessons});
 
+  List<Lesson> _lessons() {
+    var l = lessons
+        .where((element) => element.end.toUtc().isAfter(DateTime.now().toUtc()))
+        .toList()
+        .take(3)
+        .toList();
+    l.removeAt(0);
+    return l;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CardFoundation(
@@ -17,11 +27,7 @@ class HomeLessons extends StatelessWidget {
           count: lessons.length ?? 0,
         ),
         HomeLessonsBody(
-          lessons: lessons
-              .where((element) => element.end.isAfter(DateTime.now()))
-              .toList()
-              .take(2)
-              .toList(),
+          lessons: _lessons(),
         ),
       ],
     ));
