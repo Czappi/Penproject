@@ -14,9 +14,9 @@ class AbsencesChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardFoundation(
-      margin: EdgeInsets.fromLTRB(8, 8, 8, 18),
+      margin: EdgeInsets.fromLTRB(8.sp, 8.sp, 8.sp, 18.sp),
       color:
-          Get.isDarkMode ? Colors.lightBlueAccent[700] : Colors.lightBlueAccent,
+          Get.isDarkMode ? Colors.lightBlueAccent[900] : Colors.lightBlueAccent,
       child: Column(
         children: [
           Container(
@@ -27,7 +27,7 @@ class AbsencesChart extends StatelessWidget {
                 style: Get.textTheme.headline6.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
-                    fontSize: 26)),
+                    fontSize: 26.sp)),
           ),
           Container(
             padding: EdgeInsets.all(10.sp),

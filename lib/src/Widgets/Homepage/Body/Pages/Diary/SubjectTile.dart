@@ -36,7 +36,7 @@ class DiarySubjectTile extends StatelessWidget {
         color = Colors.black87;
     }
     return Padding(
-        padding: EdgeInsets.fromLTRB(8, 0, 8, 10),
+        padding: EdgeInsets.fromLTRB(8.sp, 0.sp, 8.sp, 10.sp),
         child: Material(
             color: Colors.transparent,
             child: InkWell(

@@ -55,13 +55,13 @@ class AveragesChart extends StatelessWidget {
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: const Color(0xff37434d),
-            strokeWidth: 1,
+            strokeWidth: 1.w,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
             color: const Color(0xff37434d),
-            strokeWidth: 1,
+            strokeWidth: 1.w,
           );
         },
       ),
@@ -69,7 +69,7 @@ class AveragesChart extends StatelessWidget {
         show: true,
         bottomTitles: SideTitles(
           showTitles: true,
-          reservedSize: 22,
+          reservedSize: 22.sp,
           textStyle: TextStyle(
               color: Color(0xff68737d),
               fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class AveragesChart extends StatelessWidget {
             }
             return '';
           },
-          margin: 8,
+          margin: 8.sp,
         ),
         leftTitles: SideTitles(
           showTitles: true,
@@ -105,13 +105,13 @@ class AveragesChart extends StatelessWidget {
             }
             return '';
           },
-          reservedSize: 28,
-          margin: 12,
+          reservedSize: 28.sp,
+          margin: 12.sp,
         ),
       ),
       borderData: FlBorderData(
           show: false, //true,
-          border: Border.all(color: const Color(0xff37434d), width: 1.sp)),
+          border: Border.all(color: const Color(0xff37434d), width: 1.w)),
       minX: 0,
       maxX: 11,
       minY: 0,
@@ -121,7 +121,7 @@ class AveragesChart extends StatelessWidget {
           spots: spots(),
           isCurved: true,
           colors: [color], //gradientColors,
-          barWidth: 5,
+          barWidth: 5.w,
           isStrokeCapRound: true,
           dotData: FlDotData(
             show: false,

@@ -3,11 +3,13 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:ext_storage/ext_storage.dart';
 
 class UpdateSystem {
-  var github = GitHub();
+  var github = GitHub(
+      auth:
+          Authentication.withToken("de8d3f92fb5545a8b486f7d788410d0ef8924d1d"));
 
   Future<Release> latestRelease() async {
     var release = await github.repositories
-        .getLatestRelease(RepositorySlug("Czappi", "Penproject-updates"));
+        .getLatestRelease(RepositorySlug("Czappi", "Penproject"));
     return release;
   }
 
