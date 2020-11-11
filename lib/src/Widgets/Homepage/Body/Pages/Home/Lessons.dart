@@ -12,9 +12,9 @@ class HomeLessons extends StatelessWidget {
     var l = lessons
         .where((element) => element.end.toUtc().isAfter(DateTime.now().toUtc()))
         .toList()
-        .take(3)
+        .take(2)
         .toList();
-    l.removeAt(0);
+    //l.removeAt(0);
     return l;
   }
 
