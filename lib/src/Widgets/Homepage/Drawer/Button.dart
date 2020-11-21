@@ -28,20 +28,20 @@ class HomepageDrawerButton extends StatelessWidget {
                 : Colors.black;
 
     return Padding(
-        padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+        padding: EdgeInsets.fromLTRB(5.sp, 5.sp, 5.sp, 0),
         child: Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius: BorderRadius.all(Radius.circular(12.sp)),
               onTap: disabled != true ? onTap ?? () {} : null,
               child: Ink(
-                padding: EdgeInsets.fromLTRB(20, 18, 18, 18),
+                padding: EdgeInsets.fromLTRB(20.sp, 18.sp, 18.sp, 18.sp),
                 decoration: BoxDecoration(
                     color: selected
                         ? Get.theme.buttonColor
                         : Get.theme.backgroundColor,
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                    borderRadius: BorderRadius.all(Radius.circular(12.sp))),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -53,7 +53,7 @@ class HomepageDrawerButton extends StatelessWidget {
                       width: 12.w,
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 5),
+                      padding: EdgeInsets.only(top: 5.sp),
                       child: Text(
                         text,
                         style: Get.textTheme.headline5.apply(
